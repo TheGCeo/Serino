@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="LearnLock turns your phone lock screen into a science-backed micro-classroom. Spaced repetition, active recall, and habit-building — every time you unlock." />
+    <title>LearnLock — Learn While You Unlock</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+
+      <!-- ── HERO (header lives inside) ── -->
+      <section class="hero-block" id="top">
+        <div class="hero-clip" aria-hidden="true"></div>
+        <header class="site-header" id="site-header">
+          <!-- full state -->
+          <a class="brand header-full" href="#top" aria-label="LearnLock home">
+            <span class="brand-text">Learn<span class="brand-lock" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg></span>Lock</span>
+          </a>
+          <nav class="site-nav header-full" aria-label="Primary">
+            <a href="#how-it-works">How it works</a>
+            <a href="#science">Science</a>
+            <a href="#features">Features</a>
+          </nav>
+          <a class="button button-white-outline header-full" href="#waitlist">Join Waitlist</a>
+
+          <!-- compact state (shown on scroll) -->
+          <div class="header-compact">
+            <a class="header-compact-icon" href="#top" aria-label="LearnLock home">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+            </a>
+            <a class="button header-compact-btn" href="#waitlist">Join Waitlist</a>
+          </div>
+        </header>
+
+        <div class="hero-layout">
+          <div class="hero-center">
+            <div class="hero-line-wrap" style="--d:0s">
+              <p class="hero-eyebrow hero-line">Science-based learning · iPhone app</p>
+            </div>
+            <h1 class="hero-title" aria-label="WE ENSURE PROGRESS">
+              <div class="hero-line-wrap" style="--d:.08s"><span class="hero-line">WE ENSURE</span></div>
+              <div class="hero-line-wrap" style="--d:.22s"><span class="hero-line">PROGRESS.</span></div>
+            </h1>
+            <div class="hero-line-wrap" style="--d:.42s">
+              <div class="hero-waitlist-row">
+                <div class="glow-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 64 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 20 L52 20 M38 6 L52 20 L38 34" stroke="white" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <form class="waitlist-form hero-waitlist hero-line" id="hero-waitlist-form" novalidate>
+                  <input type="email" name="email" placeholder="your@email.com" class="waitlist-input" required aria-label="Email address" />
+                  <button type="submit" class="button button-white">Join the Waitlist</button>
+                </form>
+              </div>
+            </div>
+            <p class="hero-waitlist-confirm" aria-live="polite" hidden>You're on the list. We'll be in touch soon.</p>
+            <div class="hero-line-wrap" style="--d:.68s">
+              <div class="hero-pills hero-line">
+                <span class="pill-free">FREE</span>
+                <span>Spaced Repetition</span>
+                <span>Active Recall</span>
+                <span>Micro-Learning</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── ZOOM SHOWCASE ── -->
+      <section class="zoom-section" id="zoom-showcase" aria-hidden="true">
+        <div class="zoom-inner">
+          <div class="showcase-col showcase-col--left">
+            <div class="showcase-item">
+              <span class="sc-line">ZERO</span>
+              <span class="sc-line">EXTRA</span>
+              <span class="sc-line">TIME</span>
+            </div>
+            <div class="showcase-item">
+              <span class="sc-line">SCIENCE</span>
+              <span class="sc-line">BACKED</span>
+            </div>
+          </div>
+
+          <div class="zoom-phone">
+            <img src="Images/Design ohne Titel bg removed.png" alt="LearnLock app screenshot" class="zp-img">
+            <div class="zp-mockup" style="display:none">
+              <div class="zp-status">
+                <span class="zp-time-small">13:42</span>
+                <div class="zp-island"></div>
+                <div class="zp-status-icons">
+                  <svg viewBox="0 0 17 12" fill="white" width="14" height="10"><rect x="0" y="6" width="3" height="6" rx="0.6"/><rect x="4.5" y="4" width="3" height="8" rx="0.6"/><rect x="9" y="2" width="3" height="10" rx="0.6"/><rect x="13.5" y="0" width="3" height="12" rx="0.6" opacity="0.35"/></svg>
+                  <svg viewBox="0 0 24 17" fill="white" width="15" height="11"><path d="M12 3C7.2 3 3 5.1 0 8.5L2.4 11C4.8 8.2 8.2 6.5 12 6.5s7.2 1.7 9.6 4.5L24 8.5C21 5.1 16.8 3 12 3zm0 5.5c-3 0-5.7 1.3-7.6 3.4L6.8 14C8.2 12.5 10 11.5 12 11.5s3.8 1 5.2 2.5l2.4-2.1C17.7 9.8 15 8.5 12 8.5zm0 5.5c-1.4 0-2.6.6-3.5 1.5L12 19l3.5-3.5c-.9-.9-2.1-1.5-3.5-1.5z"/></svg>
+                  <div class="zp-battery">58</div>
+                </div>
+              </div>
+              <div class="zp-screen">
+
+                <div class="zp-header">
+                  <div class="zp-header-left">
+                    <div class="zp-header-small">My</div>
+                    <div class="zp-header-title">My Learning</div>
+                  </div>
+                  <div class="zp-gear">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#e8631a" stroke-width="2" width="15" height="15"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                  </div>
+                </div>
+
+                <div class="zp-focus-card">
+                  <div class="zp-focus-label">Current Focus</div>
+                  <div class="zp-focus-btns">
+                    <button class="zp-btn-primary">
+                      <svg viewBox="0 0 24 24" fill="white" width="12" height="12"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V3H6.5A2.5 2.5 0 004 5.5v14zm0 0A2.5 2.5 0 006.5 22H20v-5H6.5A2.5 2.5 0 004 19.5z"/></svg>
+                      Start Study Session
+                    </button>
+                    <button class="zp-btn-secondary">
+                      <svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)" width="11" height="11"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                      Focus Lock Mode
+                    </button>
+                  </div>
+                </div>
+
+                <div class="zp-xp-card">
+                  <div class="zp-xp-badge">1</div>
+                  <div class="zp-xp-info">
+                    <div class="zp-xp-name">Study Sphere <span class="zp-level">LEVEL 10</span></div>
+                    <div class="zp-xp-track"><div class="zp-xp-fill" style="width:75%"></div></div>
+                    <div class="zp-xp-pts">75 / 100 XP</div>
+                  </div>
+                </div>
+
+                <div class="zp-goal-tabs">
+                  <div class="zp-goal-col zp-goal-active">
+                    <div class="zp-goal-top">🔥 goal</div>
+                    <div class="zp-goal-track"><div class="zp-goal-fill" style="width:67%;background:#e8631a"></div></div>
+                    <div class="zp-goal-sub">120m/180m Goal</div>
+                  </div>
+                  <div class="zp-goal-divider"></div>
+                  <div class="zp-goal-col">
+                    <div class="zp-goal-top">🎓 Courses</div>
+                    <div class="zp-goal-track"><div class="zp-goal-fill" style="width:50%;background:#4a8af4"></div></div>
+                    <div class="zp-goal-sub" style="color:#4a8af4">Courses</div>
+                  </div>
+                  <div class="zp-goal-divider"></div>
+                  <div class="zp-goal-col">
+                    <div class="zp-goal-top">🔥 Streak</div>
+                    <div class="zp-goal-track"><div class="zp-goal-fill" style="width:80%;background:#f45a4a"></div></div>
+                    <div class="zp-goal-sub" style="color:#f45a4a">Streak</div>
+                  </div>
+                </div>
+
+                <div class="zp-timeline-card">
+                  <div class="zp-timeline-title">⚡ Learning Timeline</div>
+                  <div class="zp-tl-item"><span class="zp-dot" style="background:#3ddc84"></span>09:00 – Math (30m)</div>
+                  <div class="zp-tl-item"><span class="zp-dot" style="background:#4a8af4"></span>11:30 – History Quiz (15m)</div>
+                  <div class="zp-tl-item"><span class="zp-dot" style="background:#f472b6"></span>13:00 – Science Lab (45m)</div>
+                </div>
+
+                <div class="zp-premium-banner">
+                  <svg viewBox="0 0 24 24" fill="white" width="13" height="13"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                  <span>Free Premium</span>
+                  <span class="zp-arr">→</span>
+                </div>
+
+                <div class="zp-tabbar">
+                  <div class="zp-tab zp-tab-active"><svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Home</span></div>
+                  <div class="zp-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="17" height="17"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Curriculum</span></div>
+                  <div class="zp-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="17" height="17"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><span>Quiz Hub</span></div>
+                  <div class="zp-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="17" height="17"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg><span>Community</span></div>
+                  <div class="zp-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="17" height="17"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Profile</span></div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="showcase-col showcase-col--right">
+            <div class="showcase-item">
+              <span class="sc-line">BUILT</span>
+              <span class="sc-line">FOR</span>
+              <span class="sc-line">YOU</span>
+            </div>
+            <div class="showcase-item">
+              <span class="sc-line">30 SEC</span>
+              <span class="sc-line">LESSONS</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <main>
+
+        <!-- ── HOW IT WORKS ── -->
+        <section id="how-it-works" class="content-section">
+          <div class="section-container">
+            <div class="section-label" data-reveal="up">How it works</div>
+            <h2 class="section-title" data-reveal="up">EVERY UNLOCK.<br>A LESSON.</h2>
+            <div class="cards-grid cards-3" data-reveal="up">
+              <article class="card">
+                <span class="card-num">01</span>
+                <h3>You pick up your phone</h3>
+                <p>You reach for your phone 96 times a day. LearnLock captures every single one of those moments.</p>
+              </article>
+              <article class="card">
+                <span class="card-num">02</span>
+                <h3>Your lock screen teaches you</h3>
+                <p>Before you even unlock, a science-backed micro-card appears. Answer it, flip it, move on.</p>
+              </article>
+              <article class="card">
+                <span class="card-num">03</span>
+                <h3>Knowledge stacks up daily</h3>
+                <p>30 seconds at a time, spaced across your natural phone habit. No extra effort needed.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── PERSONAL PLAN ── -->
+        <section class="personal-section content-section" id="personal-plan">
+          <div class="section-container">
+
+            <div class="personal-header" data-reveal="up">
+              <div>
+                <div class="section-label">Personalised Learning</div>
+                <h2 class="section-title" style="margin-bottom:0">YOUR PLAN.<br>BUILT AROUND<br>YOU.</h2>
+              </div>
+              <p class="personal-intro">
+                LearnLock doesn't give everyone the same experience. It learns your routines, measures your attention span, and builds a daily learning plan that's uniquely yours — adapting in real time so you always get the most out of every moment.
+              </p>
+            </div>
+
+            <!-- big visual card -->
+            <div class="personal-card" data-reveal="up">
+
+              <div class="personal-copy">
+                <ul class="personal-list">
+                  <li>
+                    <div class="pl-icon" style="background:#fff4ee;color:#e8631a;">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    </div>
+                    <div>
+                      <strong>Routine Detection</strong>
+                      <span>Learns when you pick up your phone throughout the day and schedules cards around your natural habits.</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="pl-icon" style="background:#eef4ff;color:#4a7ff7;">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    </div>
+                    <div>
+                      <strong>Attention Span Mapping</strong>
+                      <span>Tracks response times and accuracy to identify when your brain is sharpest — then serves harder cards at your peak.</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="pl-icon" style="background:#eefaf4;color:#22c069;">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <div>
+                      <strong>Adaptive Difficulty</strong>
+                      <span>Card complexity adjusts automatically. If you're tired, simpler review. If you're sharp, new material that pushes your limits.</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="pl-icon" style="background:#f5eeff;color:#9b59f7;">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+                    </div>
+                    <div>
+                      <strong>Daily Plan Rebuild</strong>
+                      <span>Every morning your plan is recalculated. Yesterday's skips, your sleep pattern, your upcoming goals — all factored in.</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="personal-visual">
+                <div class="pv-card">
+                  <div class="pv-header">
+                    <div class="pv-avatar">YO</div>
+                    <div>
+                      <strong>Your Profile</strong>
+                      <span>Updated today</span>
+                    </div>
+                    <span class="pv-live-badge">● Live</span>
+                  </div>
+
+                  <div class="pv-attention">
+                    <p class="pv-label">Attention span today</p>
+                    <div class="pv-bars">
+                      <div class="pv-bar-wrap">
+                        <div class="pv-bar" style="--h:38%"></div>
+                        <span>7am</span>
+                      </div>
+                      <div class="pv-bar-wrap">
+                        <div class="pv-bar pv-bar-peak" style="--h:92%"></div>
+                        <span>9am</span>
+                      </div>
+                      <div class="pv-bar-wrap">
+                        <div class="pv-bar pv-bar-peak" style="--h:100%"></div>
+                        <span>11am</span>
+                      </div>
+                      <div class="pv-bar-wrap">
+                        <div class="pv-bar" style="--h:55%"></div>
+                        <span>1pm</span>
+                      </div>
+                      <div class="pv-bar-wrap">
+                        <div class="pv-bar" style="--h:70%"></div>
+                        <span>3pm</span>
+                      </div>
+                      <div class="pv-bar-wrap">
+                        <div class="pv-bar" style="--h:48%"></div>
+                        <span>5pm</span>
+                      </div>
+                      <div class="pv-bar-wrap">
+                        <div class="pv-bar pv-bar-mid" style="--h:62%"></div>
+                        <span>7pm</span>
+                      </div>
+                      <div class="pv-bar-wrap">
+                        <div class="pv-bar" style="--h:28%"></div>
+                        <span>9pm</span>
+                      </div>
+                    </div>
+                    <div class="pv-peak-label">
+                      <span class="pv-peak-dot"></span>
+                      Peak focus: 9am – 12pm
+                    </div>
+                  </div>
+
+                  <div class="pv-routines">
+                    <p class="pv-label">Detected routines</p>
+                    <div class="pv-routine-chips">
+                      <span>☀️ Morning unlock · 07:14</span>
+                      <span>🚌 Commute · 08:32</span>
+                      <span>☕ Lunch break · 12:48</span>
+                      <span>🌙 Wind-down · 21:05</span>
+                    </div>
+                  </div>
+
+                  <div class="pv-today">
+                    <p class="pv-label">Today's plan</p>
+                    <div class="pv-plan-rows">
+                      <div class="pv-plan-row pv-plan-done">
+                        <span class="pv-plan-check">✓</span>
+                        <span>Morning review — 6 cards</span>
+                        <span class="pv-plan-time">07:14</span>
+                      </div>
+                      <div class="pv-plan-row pv-plan-done">
+                        <span class="pv-plan-check">✓</span>
+                        <span>Commute session — 4 new</span>
+                        <span class="pv-plan-time">08:33</span>
+                      </div>
+                      <div class="pv-plan-row pv-plan-active">
+                        <span class="pv-plan-dot"></span>
+                        <span>Peak session — 8 hard cards</span>
+                        <span class="pv-plan-time">Now</span>
+                      </div>
+                      <div class="pv-plan-row pv-plan-upcoming">
+                        <span class="pv-plan-upcoming-dot"></span>
+                        <span>Evening review — 5 cards</span>
+                        <span class="pv-plan-time">21:05</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ── STATS ── -->
+        <section class="stats-section" data-reveal="up">
+          <div class="section-container stats-inner">
+            <div class="stat-item">
+              <strong>96×</strong>
+              <span>avg. daily phone pickups captured for learning</span>
+            </div>
+            <div class="stat-divider" aria-hidden="true"></div>
+            <div class="stat-item">
+              <strong>3×</strong>
+              <span>faster retention vs passive re-reading</span>
+            </div>
+            <div class="stat-divider" aria-hidden="true"></div>
+            <div class="stat-item">
+              <strong>30s</strong>
+              <span>average lesson — fits before you unlock</span>
+            </div>
+          </div>
+        </section>
+
+
+
+        <!-- ── FEATURES ── -->
+        <section id="features" class="content-section">
+          <div class="section-container">
+            <div class="section-label" data-reveal="up">Features</div>
+            <h2 class="section-title" data-reveal="up">BUILT TO MAKE<br>YOU UNSTOPPABLE.</h2>
+
+            <!-- Row 1: Lock Screen + Gamification -->
+            <div class="feat-row feat-row-2" data-reveal="up">
+
+              <!-- Lock Screen -->
+              <article class="feat-card feat-card-dark">
+                <div class="feat-copy">
+                  <span class="feat-tag">Core</span>
+                  <h3>Lock Screen Learning</h3>
+                  <p>Every time you reach for your phone, a lesson is already waiting. No app to open. No extra routine.</p>
+                </div>
+                <div class="feat-visual">
+                  <div class="fv-phone">
+                    <div class="fv-phone-notch"></div>
+                    <div class="fv-screen">
+                      <div class="fv-time">9:41</div>
+                      <div class="fv-ls-card">
+                        <span class="fv-tag-pill">Biology</span>
+                        <p>What organelle produces ATP?</p>
+                        <div class="fv-reveal">Tap to reveal</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Gamification -->
+              <article class="feat-card feat-card-orange">
+                <div class="feat-copy">
+                  <span class="feat-tag feat-tag-light">Gamification</span>
+                  <h3>Earn. Level Up. Compete.</h3>
+                  <p>XP points, daily streaks, and leaderboards turn daily learning into something you actually look forward to.</p>
+                </div>
+                <div class="feat-visual">
+                  <div class="fv-game">
+                    <div class="fv-streak">
+                      <span class="fv-flame">🔥</span>
+                      <div>
+                        <strong>14</strong>
+                        <span>day streak</span>
+                      </div>
+                    </div>
+                    <div class="fv-xp-block">
+                      <div class="fv-xp-header">
+                        <span>Level 8</span>
+                        <span>2,340 / 3,000 XP</span>
+                      </div>
+                      <div class="fv-xp-bar"><div class="fv-xp-fill" style="width:78%"></div></div>
+                    </div>
+                    <div class="fv-badges">
+                      <div class="fv-badge fv-badge-gold" title="7-day streak">⭐</div>
+                      <div class="fv-badge fv-badge-blue" title="First deck completed">🎯</div>
+                      <div class="fv-badge fv-badge-green" title="100 cards reviewed">💡</div>
+                      <div class="fv-badge fv-badge-purple" title="Top 10 leaderboard">🏆</div>
+                    </div>
+                    <div class="fv-leaderboard">
+                      <div class="fv-lb-row"><span class="fv-lb-rank fv-rank-gold">1</span><span>Alex M.</span><span class="fv-lb-xp">4,210 XP</span></div>
+                      <div class="fv-lb-row fv-lb-you"><span class="fv-lb-rank">2</span><span>You</span><span class="fv-lb-xp">2,340 XP</span></div>
+                      <div class="fv-lb-row"><span class="fv-lb-rank">3</span><span>Sarah K.</span><span class="fv-lb-xp">1,980 XP</span></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+
+            <!-- Row 2: Breathing — full width -->
+            <div class="feat-row feat-row-full" data-reveal="up">
+              <article class="feat-card feat-card-breath">
+                <div class="feat-copy feat-copy-breath">
+                  <span class="feat-tag feat-tag-teal">Science-based</span>
+                  <h3>Breathing for<br>Peak Focus.</h3>
+                  <p>Before each session, LearnLock guides you through a proven breathing method — box breathing, 4-7-8, or physiological sigh — priming your brain for maximum retention.</p>
+                  <div class="feat-breath-methods">
+                    <span>Box Breathing</span>
+                    <span>4-7-8 Method</span>
+                    <span>Physiological Sigh</span>
+                  </div>
+                </div>
+                <div class="feat-visual feat-visual-breath">
+                  <div class="breath-rings">
+                    <div class="breath-label" id="breath-label">INHALE</div>
+                    <div class="breath-ring breath-ring-4"></div>
+                    <div class="breath-ring breath-ring-3"></div>
+                    <div class="breath-ring breath-ring-2"></div>
+                    <div class="breath-ring breath-ring-1"></div>
+                    <div class="breath-core"></div>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Row 3: Small feature tiles -->
+            <div class="feat-row feat-row-4" data-reveal="up">
+              <article class="feat-tile">
+                <div class="feat-tile-icon" style="background:#fff4ee; color:#e8631a;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <h4>Smart Scheduling</h4>
+                <p>Cards resurface at the optimal moment before you'd forget them.</p>
+              </article>
+              <article class="feat-tile">
+                <div class="feat-tile-icon" style="background:#eef4ff; color:#4a7ff7;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                </div>
+                <h4>AI Card Generator</h4>
+                <p>Paste any text and get a perfect set of retrieval-practice cards instantly.</p>
+              </article>
+              <article class="feat-tile">
+                <div class="feat-tile-icon" style="background:#eefaf4; color:#22c069;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <h4>Progress Analytics</h4>
+                <p>Retention graphs show exactly which topics need work and which are locked in.</p>
+              </article>
+              <article class="feat-tile">
+                <div class="feat-tile-icon" style="background:#f5eeff; color:#9b59f7;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                </div>
+                <h4>Any Topic, Any Deck</h4>
+                <p>Choose from curated decks or import your own — science, law, language, and more.</p>
+              </article>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ── SCIENCE ── -->
+        <section id="science" class="content-section content-section-tinted">
+          <div class="section-container">
+            <div class="section-label" data-reveal="up">Why it works</div>
+            <h2 class="section-title" data-reveal="up">BUILT ON<br>SCIENCE.</h2>
+            <p class="section-intro" data-reveal="up">
+              LearnLock isn't flashcards — it's a cognitive engine. Every card, every review interval, every prompt is driven by decades of learning science.
+            </p>
+            <div class="cards-grid cards-3" data-reveal="up">
+              <article class="card card-accent">
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <h3>Spaced Repetition</h3>
+                <p>Cards resurface at the exact moment you're about to forget — locking knowledge in for the long term.</p>
+              </article>
+              <article class="card card-accent">
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                </div>
+                <h3>Active Recall</h3>
+                <p>Retrieving information is 3× more effective than re-reading. Every question forces your brain to reconstruct knowledge.</p>
+              </article>
+              <article class="card card-accent">
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <h3>Habit Stacking</h3>
+                <p>Anchoring learning to an existing habit means you never need to "remember to study" again.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── REVIEWS CAROUSEL ── -->
+        <section class="reviews-section content-section-tinted" data-reveal="up">
+          <div class="section-container">
+
+            <!-- Proof bar -->
+            <div class="proof-bar">
+              <div class="proof-item">
+                <div class="proof-stars" aria-label="5 out of 5 stars">
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                  <svg viewBox="0 0 16 16" aria-hidden="true"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                </div>
+                <strong>4.9 / 5</strong>
+                <span>average rating</span>
+              </div>
+              <div class="proof-divider" aria-hidden="true"></div>
+              <div class="proof-item">
+                <strong>87</strong>
+                <span>early testers</span>
+              </div>
+              <div class="proof-divider" aria-hidden="true"></div>
+              <div class="proof-item">
+                <strong>12</strong>
+                <span>countries represented</span>
+              </div>
+              <div class="proof-divider" aria-hidden="true"></div>
+              <div class="proof-item">
+                <strong>94%</strong>
+                <span>would recommend to a friend</span>
+              </div>
+            </div>
+
+            <!-- Carousel heading -->
+            <div class="reviews-heading">
+              <div>
+                <div class="section-label">Early Tester Reviews</div>
+                <h2 class="section-title" style="margin-bottom:0">REAL PEOPLE.<br>REAL RESULTS.</h2>
+              </div>
+              <div class="reviews-nav" aria-label="Review navigation">
+                <button class="rev-arrow" id="rev-prev" aria-label="Previous review">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6 9 12l6 6"/></svg>
+                </button>
+                <button class="rev-arrow" id="rev-next" aria-label="Next review">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Slides -->
+            <div class="reviews-track-wrap" aria-live="polite">
+              <div class="reviews-track" id="reviews-track">
+
+                <article class="review-card" data-index="0">
+                  <div class="review-quote-mark" aria-hidden="true">"</div>
+                  <div class="review-stars" aria-label="5 stars">
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                  </div>
+                  <blockquote>I've tried Duolingo, Anki, Notion flashcards — nothing stuck. LearnLock is the only thing that actually fits my life without adding any friction. I learned 200 med terms in two weeks without a single dedicated study session.</blockquote>
+                  <footer>
+                    <div class="review-avatar" style="--av-color:#e8631a">JL</div>
+                    <div>
+                      <strong>Jamie L.</strong>
+                      <span>Medical Student · Early Tester</span>
+                    </div>
+                    <span class="review-badge">Beta Access</span>
+                  </footer>
+                </article>
+
+                <article class="review-card" data-index="1">
+                  <div class="review-quote-mark" aria-hidden="true">"</div>
+                  <div class="review-stars" aria-label="5 stars">
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                  </div>
+                  <blockquote>The breathing method before study sessions is genuinely a game changer. I was sceptical — sounded like wellness fluff. But my focus went from scattered to laser-sharp within a few days. I wish I'd had this during my finals.</blockquote>
+                  <footer>
+                    <div class="review-avatar" style="--av-color:#4a7ff7">PN</div>
+                    <div>
+                      <strong>Priya N.</strong>
+                      <span>UX Designer · Early Tester</span>
+                    </div>
+                    <span class="review-badge">Beta Access</span>
+                  </footer>
+                </article>
+
+                <article class="review-card" data-index="2">
+                  <div class="review-quote-mark" aria-hidden="true">"</div>
+                  <div class="review-stars" aria-label="5 stars">
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                  </div>
+                  <blockquote>I love that I can't just swipe past the card. That tiny moment of forced engagement is all it takes. I went from 40% retention on new vocab to over 85% in three weeks. The gamification streak kept me accountable.</blockquote>
+                  <footer>
+                    <div class="review-avatar" style="--av-color:#22c069">MT</div>
+                    <div>
+                      <strong>Marcus T.</strong>
+                      <span>Software Engineer · Early Tester</span>
+                    </div>
+                    <span class="review-badge">Beta Access</span>
+                  </footer>
+                </article>
+
+                <article class="review-card" data-index="3">
+                  <div class="review-quote-mark" aria-hidden="true">"</div>
+                  <div class="review-stars" aria-label="5 stars">
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                  </div>
+                  <blockquote>Didn't expect to care about a leaderboard for flashcards — but here I am checking my rank every morning. The competitive element is weirdly motivating. My study partner joined just to beat me and now we're both way ahead in our prep.</blockquote>
+                  <footer>
+                    <div class="review-avatar" style="--av-color:#9b59f7">SR</div>
+                    <div>
+                      <strong>Sofia R.</strong>
+                      <span>Law Student · Early Tester</span>
+                    </div>
+                    <span class="review-badge">Beta Access</span>
+                  </footer>
+                </article>
+
+                <article class="review-card" data-index="4">
+                  <div class="review-quote-mark" aria-hidden="true">"</div>
+                  <div class="review-stars" aria-label="5 stars">
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                    <svg viewBox="0 0 16 16"><polygon points="8,1 10.2,6.2 16,6.8 11.6,11 13,16.8 8,13.8 3,16.8 4.4,11 0,6.8 5.8,6.2"/></svg>
+                  </div>
+                  <blockquote>Used it for MCAT prep. The spaced repetition is genuinely smart — it resurfaces exactly the concepts I'm shaky on, right when I need them. I tested well above my practice average and I credit at least part of that to LearnLock.</blockquote>
+                  <footer>
+                    <div class="review-avatar" style="--av-color:#0d9488">CB</div>
+                    <div>
+                      <strong>Chris B.</strong>
+                      <span>Pre-med · Early Tester</span>
+                    </div>
+                    <span class="review-badge">Beta Access</span>
+                  </footer>
+                </article>
+
+              </div>
+            </div>
+
+            <!-- Dots -->
+            <div class="reviews-dots" id="reviews-dots" role="tablist" aria-label="Review slides">
+              <button class="rev-dot is-active" data-slide="0" role="tab" aria-selected="true" aria-label="Review 1"></button>
+              <button class="rev-dot" data-slide="1" role="tab" aria-selected="false" aria-label="Review 2"></button>
+              <button class="rev-dot" data-slide="2" role="tab" aria-selected="false" aria-label="Review 3"></button>
+              <button class="rev-dot" data-slide="3" role="tab" aria-selected="false" aria-label="Review 4"></button>
+              <button class="rev-dot" data-slide="4" role="tab" aria-selected="false" aria-label="Review 5"></button>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ── WAITLIST CTA ── -->
+        <section id="faq" class="faq-section">
+          <div class="section-container faq-inner">
+            <div class="section-label" data-reveal="up">FAQ</div>
+            <h2 class="faq-title" data-reveal="up">Common questions.</h2>
+            <div class="faq-list">
+
+              <div class="faq-item" data-reveal="up">
+                <button class="faq-q" aria-expanded="false">
+                  What is LearnLock?
+                  <span class="faq-chevron" aria-hidden="true"></span>
+                </button>
+                <div class="faq-a">
+                  <p>LearnLock turns every phone pick-up into a science-backed micro-lesson. Flashcards appear on your lock screen so you absorb new knowledge passively — no extra time carved out of your day.</p>
+                </div>
+              </div>
+
+              <div class="faq-item" data-reveal="up">
+                <button class="faq-q" aria-expanded="false">
+                  How does the spaced repetition work?
+                  <span class="faq-chevron" aria-hidden="true"></span>
+                </button>
+                <div class="faq-a">
+                  <p>Our algorithm tracks how well you know each card and schedules reviews at the optimal moment — right before you're about to forget. This is the same method used by top medical students and language learners worldwide.</p>
+                </div>
+              </div>
+
+              <div class="faq-item" data-reveal="up">
+                <button class="faq-q" aria-expanded="false">
+                  Which subjects can I study?
+                  <span class="faq-chevron" aria-hidden="true"></span>
+                </button>
+                <div class="faq-a">
+                  <p>LearnLock covers Biology, History, Chemistry, Psychology, Philosophy, Neuroscience, and more. You can also create your own decks or import from any topic you're currently working on.</p>
+                </div>
+              </div>
+
+              <div class="faq-item" data-reveal="up">
+                <button class="faq-q" aria-expanded="false">
+                  Does it drain my battery or slow my phone?
+                  <span class="faq-chevron" aria-hidden="true"></span>
+                </button>
+                <div class="faq-a">
+                  <p>No. LearnLock is extremely lightweight. It hooks into your existing lock screen — no background processes, no constant syncing. Impact on battery life is negligible.</p>
+                </div>
+              </div>
+
+              <div class="faq-item" data-reveal="up">
+                <button class="faq-q" aria-expanded="false">
+                  Is it free?
+                  <span class="faq-chevron" aria-hidden="true"></span>
+                </button>
+                <div class="faq-a">
+                  <p>LearnLock has a free tier with core features. Pro unlocks unlimited decks, advanced analytics, and Focus Lock Mode. The first 500 waitlist members get lifetime Pro access — completely free.</p>
+                </div>
+              </div>
+
+              <div class="faq-item" data-reveal="up">
+                <button class="faq-q" aria-expanded="false">
+                  When does it launch?
+                  <span class="faq-chevron" aria-hidden="true"></span>
+                </button>
+                <div class="faq-a">
+                  <p>We're launching on iOS first. Join the waitlist to be notified the moment the app goes live and to lock in your early-access spot.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-wordmark" aria-hidden="true">Lea<span class="fw-rn">rn</span><span class="fw-lock"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg></span>Lock</div>
+      </footer>
+
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
