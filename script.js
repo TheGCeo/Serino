@@ -1,4 +1,57 @@
 /* ═══════════════════════════════════════
+   HERO TEXTTYPE
+═══════════════════════════════════════ */
+(function () {
+  const el = document.getElementById('hero-texttype');
+  if (!el) return;
+
+  const texts = [
+    'WE ENSURE\nPROGRESS.',
+    'WE ENSURE\nLEARNING.',
+    'WE ENSURE\nRETENTION.'
+  ];
+  const TYPING_SPEED  = 75;
+  const DELETING_SPEED = 35;
+  const PAUSE         = 2000;
+
+  const content = document.createElement('span');
+  el.appendChild(content);
+
+  const cursor = document.createElement('span');
+  cursor.className = 'text-type__cursor';
+  cursor.setAttribute('aria-hidden', 'true');
+  cursor.textContent = '|';
+  el.appendChild(cursor);
+
+  let textIdx = 0, charIdx = 0, deleting = false, str = '';
+
+  function tick() {
+    const target = texts[textIdx];
+    if (!deleting) {
+      str = target.slice(0, ++charIdx);
+      content.textContent = str;
+      if (charIdx === target.length) {
+        setTimeout(() => { deleting = true; tick(); }, PAUSE);
+        return;
+      }
+    } else {
+      str = str.slice(0, -1);
+      content.textContent = str;
+      if (str.length === 0) {
+        deleting = false;
+        charIdx = 0;
+        textIdx = (textIdx + 1) % texts.length;
+        setTimeout(tick, 200);
+        return;
+      }
+    }
+    setTimeout(tick, deleting ? DELETING_SPEED : TYPING_SPEED);
+  }
+
+  setTimeout(tick, 400);
+})();
+
+/* ═══════════════════════════════════════
    MOBILE BOTTOM TAB — active state
 ═══════════════════════════════════════ */
 (function () {
