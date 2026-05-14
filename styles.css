@@ -2242,11 +2242,11 @@ img { display: block; max-width: 100%; }
   .waitlist-input {
     width: 100% !important;
     max-width: none;
-    border-radius: 12px !important;
-    padding: 0.9rem 1.1rem !important;
+    border-radius: 999px !important;
+    padding: 0.9rem 1.6rem !important;
     box-sizing: border-box;
   }
-  .hero-waitlist .button { border-radius: 12px; }
+  .hero-waitlist .button { border-radius: 999px; }
 
   .hero-pills { font-size: 0.7rem; gap: 0.4rem; flex-wrap: wrap; }
 
