@@ -1775,6 +1775,14 @@ img { display: block; max-width: 100%; }
 
 .feat-card-breath h3 { color: var(--ink); }
 .feat-card-breath p  { color: var(--muted); }
+.feat-breath-stat {
+  margin-top: 1rem !important;
+  font-size: 0.85rem !important;
+  line-height: 1.7;
+  color: rgba(17,17,17,0.5) !important;
+  border-left: 2px solid rgba(20,184,166,0.4);
+  padding-left: 0.85rem;
+}
 
 .feat-breath-methods {
   display: flex;
