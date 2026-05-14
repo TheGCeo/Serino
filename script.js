@@ -1,4 +1,31 @@
 /* ═══════════════════════════════════════
+   MOBILE BOTTOM TAB — active state
+═══════════════════════════════════════ */
+(function () {
+  const tabs = document.querySelectorAll('.mobile-tab-nav__item[data-section]');
+  if (!tabs.length) return;
+
+  const sections = Array.from(tabs).map(t => document.getElementById(t.dataset.section)).filter(Boolean);
+
+  function setActive() {
+    const mid = window.innerHeight * 0.4;
+    let current = sections[0];
+    sections.forEach(s => {
+      if (s.getBoundingClientRect().top <= mid) current = s;
+    });
+    tabs.forEach(t => t.classList.toggle('is-active', t.dataset.section === current.id));
+  }
+
+  window.addEventListener('scroll', setActive, { passive: true });
+  setActive();
+
+  // close smooth scroll — ensure bottom nav doesn't cover target
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => setTimeout(setActive, 600));
+  });
+})();
+
+/* ═══════════════════════════════════════
    STICKY HEADER — compact on scroll
 ═══════════════════════════════════════ */
 (function () {
@@ -291,7 +318,7 @@ document.querySelectorAll(".faq-q").forEach((btn) => {
 ["hero-waitlist-form", "main-waitlist-form"].forEach((id) => {
   const form = document.getElementById(id);
   if (!form) return;
-  const confirm = form.nextElementSibling;
+  const confirm = document.querySelector('.hero-waitlist-confirm, .main-waitlist-confirm');
   const btn = form.querySelector("button[type=submit]");
 
   form.addEventListener("submit", async (e) => {
@@ -301,12 +328,17 @@ document.querySelectorAll(".faq-q").forEach((btn) => {
 
     if (btn) { btn.textContent = "Joining…"; btn.disabled = true; }
 
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+
     try {
       const res = await fetch("https://formspree.io/f/mojrbrgo", {
         method: "POST",
         headers: { "Accept": "application/json" },
         body: new FormData(form),
+        signal: controller.signal,
       });
+      clearTimeout(timeout);
 
       if (res.ok) {
         form.hidden = true;
@@ -315,6 +347,7 @@ document.querySelectorAll(".faq-q").forEach((btn) => {
         if (btn) { btn.textContent = "Try again"; btn.disabled = false; }
       }
     } catch {
+      clearTimeout(timeout);
       if (btn) { btn.textContent = "Try again"; btn.disabled = false; }
     }
   });
