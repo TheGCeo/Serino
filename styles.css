@@ -14,7 +14,13 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* offset for fixed header */
+}
+@media (max-width: 680px) {
+  html { scroll-padding-top: 3.5rem; }
+}
 
 body {
   margin: 0;

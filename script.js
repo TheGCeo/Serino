@@ -39,22 +39,24 @@
 
   const sections = Array.from(tabs).map(t => document.getElementById(t.dataset.section)).filter(Boolean);
 
+  // Cache offsets — read layout once, not on every scroll tick
+  let offsets = [];
+  function cacheOffsets() {
+    offsets = sections.map(s => ({ id: s.id, top: s.offsetTop }));
+  }
+  cacheOffsets();
+  window.addEventListener('resize', cacheOffsets, { passive: true });
+
   function setActive() {
-    const mid = window.innerHeight * 0.4;
-    let current = sections[0];
-    sections.forEach(s => {
-      if (s.getBoundingClientRect().top <= mid) current = s;
-    });
-    tabs.forEach(t => t.classList.toggle('is-active', t.dataset.section === current.id));
+    const scrollY = window.scrollY + window.innerHeight * 0.4;
+    let currentId = offsets[0].id;
+    offsets.forEach(o => { if (o.top <= scrollY) currentId = o.id; });
+    tabs.forEach(t => t.classList.toggle('is-active', t.dataset.section === currentId));
   }
 
   window.addEventListener('scroll', setActive, { passive: true });
   setActive();
-
-  // close smooth scroll — ensure bottom nav doesn't cover target
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => setTimeout(setActive, 600));
-  });
+  tabs.forEach(tab => tab.addEventListener('click', () => setTimeout(setActive, 600)));
 })();
 
 /* ═══════════════════════════════════════
@@ -83,30 +85,32 @@
 
   function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
 
+  // Cache section offset — avoid getBoundingClientRect on every scroll tick
+  let sectionTop = 0;
+  function cacheOffset() { sectionTop = section.offsetTop; }
+  cacheOffset();
+  window.addEventListener('resize', cacheOffset, { passive: true });
+
+  let rafPending = false;
   function update() {
-    const rect = section.getBoundingClientRect();
-    const vh   = window.innerHeight;
-    // progress: 0 when section top enters viewport, 1 when section has scrolled 70% through
-    const raw  = 1 - (rect.top / (vh * 0.7));
-    const p    = Math.min(Math.max(raw, 0), 1);
-    const e    = easeOutCubic(p);
+    if (rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(() => {
+      rafPending = false;
+      const vh  = window.innerHeight;
+      const raw = 1 - ((sectionTop - window.scrollY) / (vh * 0.7));
+      const e   = easeOutCubic(Math.min(Math.max(raw, 0), 1));
 
-    // phone: 0.32 → 1.0
-    phone.style.transform = `scale(${(0.32 + 0.68 * e).toFixed(4)})`;
-
-    // text: ghost → full white, slide in
-    if (colLeft) {
-      const s = (0.55 + 0.45 * e).toFixed(4);
-      const x = ((1 - e) * 60).toFixed(2);
-      colLeft.style.transform = `scale(${s}) translateX(-${x}px)`;
-      colLeft.style.opacity   = (0.08 + 0.92 * e).toFixed(4);
-    }
-    if (colRight) {
-      const s = (0.55 + 0.45 * e).toFixed(4);
-      const x = ((1 - e) * 60).toFixed(2);
-      colRight.style.transform = `scale(${s}) translateX(${x}px)`;
-      colRight.style.opacity   = (0.08 + 0.92 * e).toFixed(4);
-    }
+      phone.style.transform = `scale(${(0.32 + 0.68 * e).toFixed(2)})`;
+      if (colLeft) {
+        colLeft.style.transform = `scale(${(0.55 + 0.45 * e).toFixed(2)}) translateX(-${((1 - e) * 60).toFixed(1)}px)`;
+        colLeft.style.opacity   = (0.08 + 0.92 * e).toFixed(2);
+      }
+      if (colRight) {
+        colRight.style.transform = `scale(${(0.55 + 0.45 * e).toFixed(2)}) translateX(${((1 - e) * 60).toFixed(1)}px)`;
+        colRight.style.opacity   = (0.08 + 0.92 * e).toFixed(2);
+      }
+    });
   }
 
   window.addEventListener("scroll", update, { passive: true });
