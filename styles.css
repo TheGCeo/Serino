@@ -1314,7 +1314,8 @@ img { display: block; max-width: 100%; }
   display: grid;
   place-items: end center;
   background: var(--white);
-  padding-bottom: 3rem;
+  padding: 5rem 0 3rem;
+  border-top: 1.5px solid var(--border);
 }
 
 .footer-wordmark {
@@ -2492,8 +2493,8 @@ img { display: block; max-width: 100%; }
 
   .reviews-grid { grid-template-columns: 1fr; }
 
-  .site-footer { min-height: 8rem; }
-  .footer-wordmark { font-size: clamp(3.5rem, 15vw, 8rem); }
+  .site-footer { min-height: 14rem; padding: 4rem 0 3rem; }
+  .footer-wordmark { font-size: clamp(4.8rem, 22vw, 9rem); }
 
   /* body padding for fixed bottom nav */
   body { padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px)); }
