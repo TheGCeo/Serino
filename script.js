@@ -5,14 +5,8 @@
   const el = document.getElementById('hero-texttype');
   if (!el) return;
 
-  const texts = [
-    'WE ENSURE\nPROGRESS.',
-    'WE ENSURE\nLEARNING.',
-    'WE ENSURE\nRETENTION.'
-  ];
-  const TYPING_SPEED  = 75;
-  const DELETING_SPEED = 35;
-  const PAUSE         = 2000;
+  const text = 'WE ENSURE\nPROGRESS.';
+  const TYPING_SPEED = 75;
 
   const content = document.createElement('span');
   el.appendChild(content);
@@ -23,29 +17,14 @@
   cursor.textContent = '|';
   el.appendChild(cursor);
 
-  let textIdx = 0, charIdx = 0, deleting = false, str = '';
-
+  let i = 0;
   function tick() {
-    const target = texts[textIdx];
-    if (!deleting) {
-      str = target.slice(0, ++charIdx);
-      content.textContent = str;
-      if (charIdx === target.length) {
-        setTimeout(() => { deleting = true; tick(); }, PAUSE);
-        return;
-      }
+    if (i < text.length) {
+      content.textContent = text.slice(0, ++i);
+      setTimeout(tick, TYPING_SPEED);
     } else {
-      str = str.slice(0, -1);
-      content.textContent = str;
-      if (str.length === 0) {
-        deleting = false;
-        charIdx = 0;
-        textIdx = (textIdx + 1) % texts.length;
-        setTimeout(tick, 200);
-        return;
-      }
+      cursor.style.display = 'none';
     }
-    setTimeout(tick, deleting ? DELETING_SPEED : TYPING_SPEED);
   }
 
   setTimeout(tick, 400);
