@@ -2357,13 +2357,3 @@ img { display: block; max-width: 100%; }
 
 /* TextType hero */
 #hero-texttype { white-space: pre-wrap; min-height: 2.4em; }
-.text-type__cursor {
-  margin-left: 0.05em;
-  display: inline-block;
-  font-weight: 300;
-  animation: cursor-blink 0.9s step-end infinite;
-}
-@keyframes cursor-blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
-}

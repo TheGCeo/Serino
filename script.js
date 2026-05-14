@@ -8,22 +8,11 @@
   const text = 'WE ENSURE\nPROGRESS.';
   const TYPING_SPEED = 75;
 
-  const content = document.createElement('span');
-  el.appendChild(content);
-
-  const cursor = document.createElement('span');
-  cursor.className = 'text-type__cursor';
-  cursor.setAttribute('aria-hidden', 'true');
-  cursor.textContent = '|';
-  el.appendChild(cursor);
-
   let i = 0;
   function tick() {
     if (i < text.length) {
-      content.textContent = text.slice(0, ++i);
+      el.textContent = text.slice(0, ++i);
       setTimeout(tick, TYPING_SPEED);
-    } else {
-      cursor.style.display = 'none';
     }
   }
 
