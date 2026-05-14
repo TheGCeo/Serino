@@ -319,3 +319,4 @@ document.querySelectorAll(".faq-q").forEach((btn) => {
     }
   });
 });
+
