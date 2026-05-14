@@ -2239,7 +2239,8 @@ img { display: block; max-width: 100%; }
 
   .glow-arrow { display: none; }
   .hero-waitlist { flex-direction: column; align-items: stretch; gap: 0.6rem; }
-  .waitlist-input { max-width: none; }
+  .waitlist-input { max-width: none; border-radius: 14px; padding-left: 1.2rem; }
+  .hero-waitlist .button { border-radius: 14px; }
 
   .hero-pills { font-size: 0.7rem; gap: 0.4rem; flex-wrap: wrap; }
 
@@ -2322,20 +2323,4 @@ img { display: block; max-width: 100%; }
     color: var(--orange);
   }
 
-  .mobile-tab-nav__item--cta {
-    flex: none;
-    flex-direction: row;
-    background: var(--orange);
-    color: #fff !important;
-    font-size: 0.72rem;
-    font-weight: 800;
-    padding: 0.7rem 1.3rem;
-    border-radius: 999px;
-    letter-spacing: 0.01em;
-    text-transform: none;
-    gap: 0;
-  }
-
-  .mobile-tab-nav__item--cta svg { display: none; }
-  .mobile-tab-nav__item--cta:active { background: var(--orange-hover); }
 }
