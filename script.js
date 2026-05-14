@@ -377,7 +377,15 @@ document.querySelectorAll(".faq-q").forEach((btn) => {
       clearTimeout(timeout);
 
       if (res.ok) {
-        form.hidden = true;
+        if (btn) {
+          btn.textContent = "✓ You're on the list!";
+          btn.disabled = false;
+          btn.style.background = "rgba(255,255,255,0.25)";
+          btn.style.color = "#fff";
+          btn.style.cursor = "default";
+        }
+        const input = form.querySelector("input[type=email]");
+        if (input) input.style.display = "none";
         if (confirm) confirm.hidden = false;
       } else {
         if (btn) { btn.textContent = "Try again"; btn.disabled = false; }

@@ -169,6 +169,15 @@ img { display: block; max-width: 100%; }
 }
 
 
+.brand-logo {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.9);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
 .brand-text {
   font-family: "League Spartan", sans-serif;
   font-size: 1.6rem;
