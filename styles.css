@@ -278,7 +278,7 @@ img { display: block; max-width: 100%; }
   z-index: 1;
   width: 100%;
   max-width: 1200px;
-  padding: 3rem 3.5rem 0;
+  padding: 1rem 3.5rem 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -560,7 +560,7 @@ img { display: block; max-width: 100%; }
 ══════════════════════════════════════ */
 
 .content-section {
-  padding: 7rem 0;
+  padding: 5rem 0;
   background: var(--white);
 }
 
@@ -702,6 +702,200 @@ img { display: block; max-width: 100%; }
   margin-bottom: 1.1rem;
 }
 .card-icon svg { width: 1.2rem; height: 1.2rem; }
+
+
+/* ══════════════════════════════════════
+   HOW IT WORKS — dark split layout
+══════════════════════════════════════ */
+.hiw-section {
+  background: var(--ink);
+  padding: 6rem 0;
+}
+
+.hiw-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.hiw-label { color: var(--orange) !important; }
+
+.hiw-title {
+  font-size: clamp(2.4rem, 4.5vw, 4.2rem) !important;
+  color: #fff !important;
+  margin-bottom: 2.5rem !important;
+}
+
+.hiw-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.hiw-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.hiw-num {
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--orange);
+  padding-top: 0.25rem;
+  min-width: 1.8rem;
+}
+
+.hiw-step strong {
+  display: block;
+  font-family: "League Spartan", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 0.3rem;
+}
+
+.hiw-step span {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.52);
+}
+
+/* Phone visual */
+.hiw-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.hiw-phone {
+  position: relative;
+  width: 230px;
+  background: #080808;
+  border-radius: 38px;
+  border: 1.5px solid rgba(255,255,255,0.1);
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.06);
+  z-index: 1;
+}
+
+.hiw-phone-notch {
+  width: 72px;
+  height: 24px;
+  background: #080808;
+  border-radius: 0 0 16px 16px;
+  margin: 0 auto;
+}
+
+.hiw-screen {
+  padding: 0.5rem 1.1rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  min-height: 380px;
+}
+
+.hiw-screen-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding-top: 0.5rem;
+}
+
+.hiw-screen-time {
+  font-family: "League Spartan", sans-serif;
+  font-size: 3.6rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.hiw-screen-date {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.02em;
+}
+
+.hiw-ls-card {
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 18px;
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.hiw-ls-tag {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+
+.hiw-ls-q {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.55;
+  color: #fff;
+}
+
+.hiw-ls-btn {
+  background: var(--orange);
+  border-radius: 10px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.04em;
+  text-align: center;
+  cursor: pointer;
+}
+
+.hiw-swipe-hint {
+  font-size: 0.67rem;
+  color: rgba(255,255,255,0.28);
+  text-align: center;
+  letter-spacing: 0.08em;
+  margin-top: auto;
+}
+
+.hiw-phone-glow {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,99,26,0.22) 0%, transparent 68%);
+  bottom: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 880px) {
+  .hiw-container { gap: 3.5rem; }
+}
+@media (max-width: 680px) {
+  .hiw-section { padding: 4rem 0; }
+  .hiw-container { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hiw-visual { order: -1; }
+  .hiw-phone { width: 195px; }
+  .hiw-screen { min-height: 320px; }
+  .hiw-screen-time { font-size: 3rem; }
+}
 
 
 /* ── STATS ── */
@@ -2249,14 +2443,14 @@ img { display: block; max-width: 100%; }
   /* hide header CTA on mobile — bottom nav has it */
   .button-white-outline.header-full { display: none !important; }
 
-  .hero-block { padding-top: 3.5rem; }
-  .hero-center {
-    padding: 1.2rem 1.4rem 0.5rem;
-    min-height: calc(100svh - 3.5rem - 68px - env(safe-area-inset-bottom, 0px));
-    display: flex;
-    flex-direction: column;
+  .hero-block {
+    min-height: 100svh;
+    padding-top: 4.5rem;
+    padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px));
     justify-content: center;
   }
+  .hero-layout { padding: 0; }
+  .hero-center { padding: 0 1.4rem; }
 
   .hero-title { font-size: clamp(2.4rem, 11.5vw, 4rem); letter-spacing: -0.02em; }
   .hero-eyebrow { font-size: 0.62rem; letter-spacing: 0.1em; }
@@ -2278,7 +2472,7 @@ img { display: block; max-width: 100%; }
   .zoom-section { display: none; }
 
   .section-container { width: calc(100% - 2.8rem); }
-  .content-section, .cta-section { padding: 3.5rem 0; }
+  .content-section, .cta-section { padding: 2.5rem 0; }
 
   .section-title { font-size: clamp(2.2rem, 9vw, 3.2rem); }
 

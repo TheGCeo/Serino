@@ -5,7 +5,7 @@
   const el = document.getElementById('hero-texttype');
   if (!el) return;
 
-  const text = 'WE ENSURE\nPROGRESS.';
+  const text = 'WE ENSURE\nPROGRESS!';
   const TYPING_SPEED = 75;
 
   let i = 0;
