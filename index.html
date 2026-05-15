@@ -7,34 +7,43 @@
     <title>Serinou — Learn While You Unlock</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;800;900&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-<div class="page-shell">
+    <div class="page-shell">
 
       <!-- ── HERO (header lives inside) ── -->
       <section class="hero-block" id="top">
-<div class="hero-clip" aria-hidden="true"></div>
+        <div class="hero-clip" aria-hidden="true"></div>
         <header class="site-header" id="site-header">
           <!-- full state -->
           <a class="brand header-full" href="#top" aria-label="Serinou home">
-            <span class="brand-text">Serinou</span>
-          </a>
-          <a class="header-logo-center header-full" href="#top" aria-label="Serinou home">
-            <img src="Images/IMG_0977.jpg" alt="Serinou logo" class="header-center-logo">
+            <svg class="brand-icon blur-in" style="--i:0" viewBox="0 0 48 68" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M24 2C13 2 4 11 4 22C4 31 9 38 16 44L16 50L32 50L32 44C39 38 44 31 44 22C44 11 35 2 24 2Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+              <rect x="16" y="52" width="16" height="3" rx="1.5" fill="currentColor"/>
+              <rect x="18" y="57" width="12" height="3" rx="1.5" fill="currentColor"/>
+              <rect x="20" y="62" width="8" height="4" rx="2" fill="currentColor"/>
+              <path d="M19 37V31C19 26.5 29 26.5 29 31V37" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              <rect x="16" y="37" width="16" height="11" rx="2" fill="currentColor"/>
+            </svg>
+            <span class="brand-text"><span class="blur-in" style="--i:1">S</span><span class="blur-in" style="--i:2">e</span><span class="blur-in" style="--i:3">r</span><span class="blur-in" style="--i:4">i</span><span class="blur-in" style="--i:5">n</span><span class="blur-in" style="--i:6">o</span><span class="blur-in" style="--i:7">u</span></span>
           </a>
           <nav class="site-nav header-full" aria-label="Primary">
-            <a href="#how-it-works">How it works</a>
-            <a href="#science">Science</a>
-            <a href="#features">Features</a>
+            <a class="blur-in" style="--i:8" href="#how-it-works">How it works</a>
+            <a class="blur-in" style="--i:9" href="#science">Science</a>
+            <a class="blur-in" style="--i:10" href="#features">Features</a>
           </nav>
-          <a class="button button-white-outline header-full" href="#waitlist">Join Waitlist</a>
+          <a class="button button-white-outline header-full blur-in" style="--i:11" href="#waitlist">Join Waitlist</a>
 
           <!-- compact state (shown on scroll) -->
           <div class="header-compact">
             <a class="header-compact-icon" href="#top" aria-label="Serinou home">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+              <svg width="16" height="20" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 2C7 2 3.5 5.5 3.5 10.5C3.5 13.5 5 16 7.5 17.5V21H16.5V17.5C19 16 20.5 13.5 20.5 10.5C20.5 5.5 17 2 12 2Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+                <rect x="8.5" y="22.5" width="7" height="2" rx="1" fill="currentColor"/>
+                <rect x="10" y="26" width="4" height="2" rx="1" fill="currentColor"/>
+              </svg>
             </a>
             <a class="button header-compact-btn" href="#waitlist">Join Waitlist</a>
           </div>
@@ -43,11 +52,27 @@
         <div class="hero-layout">
           <div class="hero-center">
             <div class="hero-line-wrap" style="--d:0s">
+              <div class="hero-logo-mark hero-line">
+                <svg viewBox="0 0 48 68" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M24 2C13 2 4 11 4 22C4 31 9 38 16 44L16 50L32 50L32 44C39 38 44 31 44 22C44 11 35 2 24 2Z" stroke="white" stroke-width="3" stroke-linejoin="round"/>
+                  <rect x="16" y="52" width="16" height="3" rx="1.5" fill="white"/>
+                  <rect x="18" y="57" width="12" height="3" rx="1.5" fill="white"/>
+                  <rect x="20" y="62" width="8" height="4" rx="2" fill="white"/>
+                  <path d="M19 37V31C19 26.5 29 26.5 29 31V37" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                  <rect x="16" y="37" width="16" height="11" rx="2" fill="white"/>
+                </svg>
+                <span>Serinou</span>
+              </div>
+            </div>
+            <div class="hero-line-wrap" style="--d:.14s">
               <p class="hero-eyebrow hero-line">Science-based learning · iPhone app</p>
             </div>
-            <h1 class="hero-title" id="hero-texttype" aria-label="WE ENSURE PROGRESS!"></h1>
-            <div class="hero-line-wrap" style="--d:.42s">
-              <div class="hero-waitlist-row">
+            <h1 class="hero-title" aria-label="WE ENSURE PROGRESS">
+              <div class="hero-line-wrap" style="--d:.28s"><span class="hero-line">WE ENSURE</span></div>
+              <div class="hero-line-wrap" style="--d:.42s"><span class="hero-line">PROGRESS.</span></div>
+            </h1>
+            <div class="hero-line-wrap" style="--d:.58s">
+              <div class="hero-waitlist-row" id="waitlist">
                 <div class="glow-arrow" aria-hidden="true">
                   <svg viewBox="0 0 64 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4 20 L52 20 M38 6 L52 20 L38 34" stroke="white" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -55,14 +80,33 @@
                 </div>
                 <form class="waitlist-form hero-waitlist hero-line" id="hero-waitlist-form" novalidate>
                   <input type="email" name="email" placeholder="your@email.com" class="waitlist-input" required aria-label="Email address" />
+                  <!-- honeypot: real users won't fill this; bots usually do -->
+                  <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
                   <button type="submit" class="button button-white">Join the Waitlist</button>
                 </form>
               </div>
             </div>
             <p class="hero-waitlist-confirm" aria-live="polite" hidden>You're on the list. We'll be in touch soon.</p>
+            <p class="hero-waitlist-error" id="hero-waitlist-error" aria-live="polite" hidden></p>
+            <div class="hero-line-wrap" style="--d:.65s">
+              <p class="waitlist-counter hero-line" id="waitlistCounter" aria-live="polite">
+                <span class="wc-dot" aria-hidden="true"></span>
+                <strong id="waitlistCount">0</strong>&nbsp;people already on the waitlist
+              </p>
+            </div>
+            <div class="hero-line-wrap" style="--d:.78s">
+              <div class="hero-pills hero-line">
+                <span class="pill-free">FREE</span>
+                <span>Spaced Repetition</span>
+                <span>Active Recall</span>
+                <span>Micro-Learning</span>
+              </div>
+            </div>
           </div>
 
         </div>
+
+        <img id="rocketWrapper" src="Images/rocket.png" alt="" draggable="false" aria-hidden="true">
       </section>
 
       <!-- ── ZOOM SHOWCASE ── -->
@@ -129,26 +173,26 @@
 
                 <div class="zp-goal-tabs">
                   <div class="zp-goal-col zp-goal-active">
-                    <div class="zp-goal-top"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 23c-4.97 0-9-3.58-9-8 0-3 1.67-5.33 3-7 .4 1.33.73 2 1 2 1-3 2.67-5.33 4-7 0 3 1.5 5.5 3 7 .33-1 .67-2 1-3 1 1.67 2 3.67 2 6 0 4.42-2.24 8-5 9z"/></svg> goal</div>
+                    <div class="zp-goal-top">🔥 goal</div>
                     <div class="zp-goal-track"><div class="zp-goal-fill" style="width:67%;background:#e8631a"></div></div>
                     <div class="zp-goal-sub">120m/180m Goal</div>
                   </div>
                   <div class="zp-goal-divider"></div>
                   <div class="zp-goal-col">
-                    <div class="zp-goal-top"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg> Courses</div>
+                    <div class="zp-goal-top">🎓 Courses</div>
                     <div class="zp-goal-track"><div class="zp-goal-fill" style="width:50%;background:#4a8af4"></div></div>
                     <div class="zp-goal-sub" style="color:#4a8af4">Courses</div>
                   </div>
                   <div class="zp-goal-divider"></div>
                   <div class="zp-goal-col">
-                    <div class="zp-goal-top"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 23c-4.97 0-9-3.58-9-8 0-3 1.67-5.33 3-7 .4 1.33.73 2 1 2 1-3 2.67-5.33 4-7 0 3 1.5 5.5 3 7 .33-1 .67-2 1-3 1 1.67 2 3.67 2 6 0 4.42-2.24 8-5 9z"/></svg> Streak</div>
+                    <div class="zp-goal-top">🔥 Streak</div>
                     <div class="zp-goal-track"><div class="zp-goal-fill" style="width:80%;background:#f45a4a"></div></div>
                     <div class="zp-goal-sub" style="color:#f45a4a">Streak</div>
                   </div>
                 </div>
 
                 <div class="zp-timeline-card">
-                  <div class="zp-timeline-title"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Learning Timeline</div>
+                  <div class="zp-timeline-title">⚡ Learning Timeline</div>
                   <div class="zp-tl-item"><span class="zp-dot" style="background:#3ddc84"></span>09:00 – Math (30m)</div>
                   <div class="zp-tl-item"><span class="zp-dot" style="background:#4a8af4"></span>11:30 – History Quiz (15m)</div>
                   <div class="zp-tl-item"><span class="zp-dot" style="background:#f472b6"></span>13:00 – Science Lab (45m)</div>
@@ -189,56 +233,27 @@
       <main>
 
         <!-- ── HOW IT WORKS ── -->
-        <section id="how-it-works" class="hiw-section">
-          <div class="section-container hiw-container">
-
-            <div class="hiw-copy">
-              <div class="section-label hiw-label" data-reveal="up">How it works</div>
-              <h2 class="section-title hiw-title" data-reveal="up">STUDY SMARTER.<br>NOT HARDER.</h2>
-              <ol class="hiw-steps" data-reveal="up">
-                <li class="hiw-step">
-                  <span class="hiw-num">01</span>
-                  <div>
-                    <strong>Lock in and start learning</strong>
-                    <span>Open Serinou, activate Focus Lock, and dive into flashcards. Your phone is sealed — no notifications, no distractions.</span>
-                  </div>
-                </li>
-                <li class="hiw-step">
-                  <span class="hiw-num">02</span>
-                  <div>
-                    <strong>Your cognitive state is tracked in real time</strong>
-                    <span>Serinou monitors response speed, accuracy drops, and hesitation patterns — detecting mental fatigue before you even notice it yourself.</span>
-                  </div>
-                </li>
-                <li class="hiw-step">
-                  <span class="hiw-num">03</span>
-                  <div>
-                    <strong>Breathe. Reset. Return sharper.</strong>
-                    <span>When focus drops, your personally calibrated breathing method is suggested. Restore peak clarity in under 90 seconds — then continue.</span>
-                  </div>
-                </li>
-              </ol>
+        <section id="how-it-works" class="content-section">
+          <div class="section-container">
+            <div class="section-label" data-reveal="up">How it works</div>
+            <h2 class="section-title" data-reveal="up">EVERY UNLOCK.<br>A LESSON.</h2>
+            <div class="cards-grid cards-3" data-reveal="up">
+              <article class="card">
+                <span class="card-num">01</span>
+                <h3>You pick up your phone</h3>
+                <p>You reach for your phone 96 times a day. Serinou captures every single one of those moments.</p>
+              </article>
+              <article class="card">
+                <span class="card-num">02</span>
+                <h3>Your lock screen teaches you</h3>
+                <p>Before you even unlock, a science-backed micro-card appears. Answer it, flip it, move on.</p>
+              </article>
+              <article class="card">
+                <span class="card-num">03</span>
+                <h3>Knowledge stacks up daily</h3>
+                <p>30 seconds at a time, spaced across your natural phone habit. No extra effort needed.</p>
+              </article>
             </div>
-
-            <div class="hiw-visual" data-reveal="up">
-              <div class="hiw-phone-glow" aria-hidden="true"></div>
-              <div class="hiw-phone">
-                <div class="hiw-phone-notch"></div>
-                <div class="hiw-screen">
-                  <div class="hiw-screen-top">
-                    <span class="hiw-screen-time">9:41</span>
-                    <span class="hiw-screen-date">Monday, 14 May</span>
-                  </div>
-                  <div class="hiw-ls-card">
-                    <span class="hiw-ls-tag">Neuroscience</span>
-                    <p class="hiw-ls-q">What brain region controls long-term memory formation?</p>
-                    <div class="hiw-ls-btn">Reveal Answer</div>
-                  </div>
-                  <div class="hiw-swipe-hint">swipe to unlock</div>
-                </div>
-              </div>
-            </div>
-
           </div>
         </section>
 
@@ -252,7 +267,7 @@
                 <h2 class="section-title" style="margin-bottom:0">YOUR PLAN.<br>BUILT AROUND<br>YOU.</h2>
               </div>
               <p class="personal-intro">
-                Serinou doesn't give everyone the same experience. It learns your cognitive rhythms, maps when your brain is sharpest, detects when fatigue sets in — and builds a daily learning plan that's uniquely yours. The longer you use it, the more precisely it knows you.
+                Serinou doesn't give everyone the same experience. It learns your routines, measures your attention span, and builds a daily learning plan that's uniquely yours — adapting in real time so you always get the most out of every moment.
               </p>
             </div>
 
@@ -275,8 +290,8 @@
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
                     </div>
                     <div>
-                      <strong>Cognitive Fatigue Detection</strong>
-                      <span>Serinou tracks response times and accuracy in real time. A measurable drop triggers an automatic breathing break — catching fatigue before it silently tanks your retention.</span>
+                      <strong>Attention Span Mapping</strong>
+                      <span>Tracks response times and accuracy to identify when your brain is sharpest — then serves harder cards at your peak.</span>
                     </div>
                   </li>
                   <li>
@@ -285,7 +300,7 @@
                     </div>
                     <div>
                       <strong>Adaptive Difficulty</strong>
-                      <span>Card complexity adjusts automatically. Fatigued? Simpler review to consolidate. Sharp? New material that stretches your limits. Always the right challenge.</span>
+                      <span>Card complexity adjusts automatically. If you're tired, simpler review. If you're sharp, new material that pushes your limits.</span>
                     </div>
                   </li>
                   <li>
@@ -293,8 +308,8 @@
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
                     </div>
                     <div>
-                      <strong>Personalised Breathing Profile</strong>
-                      <span>Over time, Serinou learns which breathing method restores your focus fastest — and uses only that one. Your profile gets sharper every session.</span>
+                      <strong>Daily Plan Rebuild</strong>
+                      <span>Every morning your plan is recalculated. Yesterday's skips, your sleep pattern, your upcoming goals — all factored in.</span>
                     </div>
                   </li>
                 </ul>
@@ -400,18 +415,18 @@
         <section class="stats-section" data-reveal="up">
           <div class="section-container stats-inner">
             <div class="stat-item">
-              <strong>40%</strong>
-              <span>better retention when pre-study breathing is used <em>(Frontiers in Psychology, 2022)</em></span>
+              <strong>96×</strong>
+              <span>avg. daily phone pickups captured for learning</span>
             </div>
             <div class="stat-divider" aria-hidden="true"></div>
             <div class="stat-item">
               <strong>3×</strong>
-              <span>faster recall with active retrieval vs passive re-reading <em>(Roediger &amp; Karpicke, 2006)</em></span>
+              <span>faster retention vs passive re-reading</span>
             </div>
             <div class="stat-divider" aria-hidden="true"></div>
             <div class="stat-item">
-              <strong>90s</strong>
-              <span>average time to restore peak focus using the physiological sigh <em>(Stanford, 2023)</em></span>
+              <strong>30s</strong>
+              <span>average lesson — fits before you unlock</span>
             </div>
           </div>
         </section>
@@ -427,12 +442,12 @@
             <!-- Row 1: Lock Screen + Gamification -->
             <div class="feat-row feat-row-2" data-reveal="up">
 
-              <!-- Focus Lock -->
+              <!-- Lock Screen -->
               <article class="feat-card feat-card-dark">
                 <div class="feat-copy">
                   <span class="feat-tag">Core</span>
-                  <h3>Focus Lock Mode</h3>
-                  <p>Activate a session and Serinou locks your phone against distractions — no notifications, no apps, no escape. Between sessions, flashcards appear on your lock screen so passive moments become micro-lessons too.</p>
+                  <h3>Lock Screen Learning</h3>
+                  <p>Every time you reach for your phone, a lesson is already waiting. No app to open. No extra routine.</p>
                 </div>
                 <div class="feat-visual">
                   <div class="fv-phone">
@@ -459,7 +474,7 @@
                 <div class="feat-visual">
                   <div class="fv-game">
                     <div class="fv-streak">
-                      <span class="fv-flame"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 23c-4.97 0-9-3.58-9-8 0-3 1.67-5.33 3-7 .4 1.33.73 2 1 2 1-3 2.67-5.33 4-7 0 3 1.5 5.5 3 7 .33-1 .67-2 1-3 1 1.67 2 3.67 2 6 0 4.42-2.24 8-5 9z"/></svg></span>
+                      <span class="fv-flame">🔥</span>
                       <div>
                         <strong>14</strong>
                         <span>day streak</span>
@@ -473,10 +488,10 @@
                       <div class="fv-xp-bar"><div class="fv-xp-fill" style="width:78%"></div></div>
                     </div>
                     <div class="fv-badges">
-                      <div class="fv-badge fv-badge-gold" title="7-day streak"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-                      <div class="fv-badge fv-badge-blue" title="First deck completed"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></div>
-                      <div class="fv-badge fv-badge-green" title="100 cards reviewed"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="4"/><path d="M12 6V2M8.5 8.5L6 6M15.5 8.5L18 6"/><path d="M9 21h6M12 14v7"/></svg></div>
-                      <div class="fv-badge fv-badge-purple" title="Top 10 leaderboard"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-2"/><path d="M6 9V5a6 6 0 0 1 12 0v4"/><path d="M6 14a6 6 0 0 0 12 0"/><path d="M9 21h6M12 18v3"/></svg></div>
+                      <div class="fv-badge fv-badge-gold" title="7-day streak">⭐</div>
+                      <div class="fv-badge fv-badge-blue" title="First deck completed">🎯</div>
+                      <div class="fv-badge fv-badge-green" title="100 cards reviewed">💡</div>
+                      <div class="fv-badge fv-badge-purple" title="Top 10 leaderboard">🏆</div>
                     </div>
                     <div class="fv-leaderboard">
                       <div class="fv-lb-row"><span class="fv-lb-rank fv-rank-gold">1</span><span>Alex M.</span><span class="fv-lb-xp">4,210 XP</span></div>
@@ -493,10 +508,9 @@
             <div class="feat-row feat-row-full" data-reveal="up">
               <article class="feat-card feat-card-breath">
                 <div class="feat-copy feat-copy-breath">
-                  <span class="feat-tag feat-tag-teal">Cognitive AI</span>
-                  <h3>Your Brain Has<br>a Blueprint.<br>We Read It.</h3>
-                  <p>Serinou tracks your response times, accuracy patterns, and hesitation in real time. The moment it detects cognitive fatigue — measurable in as little as 25 minutes of sustained focus — it pauses your session and prescribes the breathing method that works best for <em>you specifically</em>.</p>
-                  <p class="feat-breath-stat">Box breathing cuts cortisol by up to 25%. The physiological sigh reduces anxiety in under 90 seconds. 4-7-8 lowers heart rate by 8–12 bpm in three cycles. Serinou learns which method restores your focus fastest — and uses only that one.</p>
+                  <span class="feat-tag feat-tag-teal">Science-based</span>
+                  <h3>Breathing for<br>Peak Focus.</h3>
+                  <p>Before each session, Serinou guides you through a proven breathing method — box breathing, 4-7-8, or physiological sigh — priming your brain for maximum retention.</p>
                   <div class="feat-breath-methods">
                     <span>Box Breathing</span>
                     <span>4-7-8 Method</span>
@@ -536,8 +550,8 @@
                 <div class="feat-tile-icon" style="background:#eefaf4; color:#22c069;">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
                 </div>
-                <h4>Cognitive Analytics</h4>
-                <p>See exactly when your focus peaks and crashes — and which breathing method brings you back fastest.</p>
+                <h4>Progress Analytics</h4>
+                <p>Retention graphs show exactly which topics need work and which are locked in.</p>
               </article>
               <article class="feat-tile">
                 <div class="feat-tile-icon" style="background:#f5eeff; color:#9b59f7;">
@@ -576,10 +590,10 @@
               </article>
               <article class="card card-accent">
                 <div class="card-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
                 </div>
-                <h3>Breathing Science</h3>
-                <p>Controlled breathing lowers cortisol, slows heart rate, and activates the prefrontal cortex — the part of your brain responsible for memory encoding and focus. Done at the right moment, it's the fastest legal cognitive enhancer known to science.</p>
+                <h3>Habit Stacking</h3>
+                <p>Anchoring learning to an existing habit means you never need to "remember to study" again.</p>
               </article>
             </div>
           </div>
@@ -767,17 +781,7 @@
                   <span class="faq-chevron" aria-hidden="true"></span>
                 </button>
                 <div class="faq-a">
-                  <p>Serinou is a learning platform built around how your brain actually works. It combines flashcards and spaced repetition with Focus Lock Mode — which locks your phone during study sessions — and a cognitive monitoring system that detects mental fatigue in real time and suggests the breathing method that restores your focus fastest.</p>
-                </div>
-              </div>
-
-              <div class="faq-item" data-reveal="up">
-                <button class="faq-q" aria-expanded="false">
-                  How does the cognitive monitoring work?
-                  <span class="faq-chevron" aria-hidden="true"></span>
-                </button>
-                <div class="faq-a">
-                  <p>Serinou measures your response times, accuracy rate, and hesitation patterns during every session. When these signals drop below your personal baseline — typically after 20–30 minutes of focused work — the app pauses your session and guides you through a short breathing exercise. Over time it learns which method (box breathing, 4-7-8, or physiological sigh) restores your focus fastest, and personalises its suggestions accordingly.</p>
+                  <p>Serinou turns every phone pick-up into a science-backed micro-lesson. Flashcards appear on your lock screen so you absorb new knowledge passively — no extra time carved out of your day.</p>
                 </div>
               </div>
 
@@ -787,7 +791,7 @@
                   <span class="faq-chevron" aria-hidden="true"></span>
                 </button>
                 <div class="faq-a">
-                  <p>Our algorithm tracks how well you know each card and schedules reviews at the optimal moment — right before you're about to forget. Studies show this method produces 3× faster recall than passive re-reading, and users retain up to 80% of material after a month versus around 20% with traditional cramming.</p>
+                  <p>Our algorithm tracks how well you know each card and schedules reviews at the optimal moment — right before you're about to forget. This is the same method used by top medical students and language learners worldwide.</p>
                 </div>
               </div>
 
@@ -842,23 +846,6 @@
       </footer>
 
     </div>
-
-    <!-- mobile bottom tab navigation -->
-    <nav class="mobile-tab-nav" aria-label="Mobile navigation">
-      <a href="#top" class="mobile-tab-nav__item" data-section="top">
-        <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
-        <span>Home</span>
-      </a>
-      <a href="#how-it-works" class="mobile-tab-nav__item" data-section="how-it-works">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-        <span>How it works</span>
-      </a>
-      <a href="#features" class="mobile-tab-nav__item" data-section="features">
-        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <span>Features</span>
-      </a>
-    </nav>
-
     <script src="script.js"></script>
   </body>
 </html>

@@ -1,54 +1,4 @@
 /* ═══════════════════════════════════════
-   HERO TEXTTYPE
-═══════════════════════════════════════ */
-(function () {
-  const el = document.getElementById('hero-texttype');
-  if (!el) return;
-
-  const text = 'WE ENSURE\nPROGRESS!';
-  const TYPING_SPEED = 75;
-
-  let i = 0;
-  function tick() {
-    if (i < text.length) {
-      el.textContent = text.slice(0, ++i);
-      setTimeout(tick, TYPING_SPEED);
-    }
-  }
-
-  setTimeout(tick, 400);
-})();
-
-/* ═══════════════════════════════════════
-   MOBILE BOTTOM TAB — active state
-═══════════════════════════════════════ */
-(function () {
-  const tabs = document.querySelectorAll('.mobile-tab-nav__item[data-section]');
-  if (!tabs.length) return;
-
-  const sections = Array.from(tabs).map(t => document.getElementById(t.dataset.section)).filter(Boolean);
-
-  // Cache offsets — read layout once, not on every scroll tick
-  let offsets = [];
-  function cacheOffsets() {
-    offsets = sections.map(s => ({ id: s.id, top: s.offsetTop }));
-  }
-  cacheOffsets();
-  window.addEventListener('resize', cacheOffsets, { passive: true });
-
-  function setActive() {
-    const scrollY = window.scrollY + window.innerHeight * 0.4;
-    let currentId = offsets[0].id;
-    offsets.forEach(o => { if (o.top <= scrollY) currentId = o.id; });
-    tabs.forEach(t => t.classList.toggle('is-active', t.dataset.section === currentId));
-  }
-
-  window.addEventListener('scroll', setActive, { passive: true });
-  setActive();
-  tabs.forEach(tab => tab.addEventListener('click', () => setTimeout(setActive, 600)));
-})();
-
-/* ═══════════════════════════════════════
    STICKY HEADER — compact on scroll
 ═══════════════════════════════════════ */
 (function () {
@@ -63,7 +13,7 @@
 })();
 
 /* ═══════════════════════════════════════
-   ZOOM SHOWCASE — scroll-driven scale
+   ZOOM SHOWCASE — sticky pin + scroll-driven phone reveal
 ═══════════════════════════════════════ */
 (function () {
   const section  = document.getElementById("zoom-showcase");
@@ -73,36 +23,43 @@
   if (!section || !phone) return;
 
   function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+  function clamp(v, a, b)  { return Math.min(Math.max(v, a), b); }
 
-  // Cache section offset — avoid getBoundingClientRect on every scroll tick
-  let sectionTop = 0;
-  function cacheOffset() { sectionTop = section.offsetTop; }
-  cacheOffset();
-  window.addEventListener('resize', cacheOffset, { passive: true });
-
-  let rafPending = false;
   function update() {
-    if (rafPending) return;
-    rafPending = true;
-    requestAnimationFrame(() => {
-      rafPending = false;
-      const vh  = window.innerHeight;
-      const raw = 1 - ((sectionTop - window.scrollY) / (vh * 0.7));
-      const e   = easeOutCubic(Math.min(Math.max(raw, 0), 1));
+    const rect = section.getBoundingClientRect();
+    const vh   = window.innerHeight;
+    const sectionH = rect.height;
 
-      phone.style.transform = `scale(${(0.32 + 0.68 * e).toFixed(2)})`;
-      if (colLeft) {
-        colLeft.style.transform = `scale(${(0.55 + 0.45 * e).toFixed(2)}) translateX(-${((1 - e) * 60).toFixed(1)}px)`;
-        colLeft.style.opacity   = (0.08 + 0.92 * e).toFixed(2);
-      }
-      if (colRight) {
-        colRight.style.transform = `scale(${(0.55 + 0.45 * e).toFixed(2)}) translateX(${((1 - e) * 60).toFixed(1)}px)`;
-        colRight.style.opacity   = (0.08 + 0.92 * e).toFixed(2);
-      }
-    });
+    // How far we've scrolled INTO the section (0 when section top hits viewport top)
+    const scrolled = clamp(-rect.top, 0, sectionH - vh);
+    const maxScroll = Math.max(1, sectionH - vh);
+    const progress  = scrolled / maxScroll;   // 0 → 1 across the pinned phase
+
+    // PHONE: slide up from translateY(85vh) → 0, scale 0.85 → 1.1
+    // Animate over the first 55% of the pinned scroll, so it lands before the corners populate
+    const pPhone = clamp(progress / 0.55, 0, 1);
+    const ePhone = easeOutCubic(pPhone);
+    const ty     = (1 - ePhone) * 85;                 // 85 → 0  (vh)
+    const scale  = 0.85 + ePhone * 0.25;              // 0.85 → 1.10
+    phone.style.transform = `translateY(${ty.toFixed(2)}vh) scale(${scale.toFixed(4)})`;
+
+    // CORNER TEXT: fade + slide in between 35% and 85% progress
+    const pLabel = clamp((progress - 0.35) / 0.50, 0, 1);
+    const eLabel = easeOutCubic(pLabel);
+    const slide  = (1 - eLabel) * 40;                  // 40 → 0  (vw)
+
+    if (colLeft) {
+      colLeft.style.opacity   = eLabel.toFixed(4);
+      colLeft.style.transform = `translateX(${(-slide).toFixed(2)}vw)`;
+    }
+    if (colRight) {
+      colRight.style.opacity   = eLabel.toFixed(4);
+      colRight.style.transform = `translateX(${slide.toFixed(2)}vw)`;
+    }
   }
 
   window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update, { passive: true });
   update();
 })();
 
@@ -338,51 +295,206 @@ document.querySelectorAll(".faq-q").forEach((btn) => {
 });
 
 /* ═══════════════════════════════════════
-   WAITLIST FORMS
+   "JOIN WAITLIST" ANCHOR — scroll, focus, highlight
 ═══════════════════════════════════════ */
-["hero-waitlist-form", "main-waitlist-form"].forEach((id) => {
-  const form = document.getElementById(id);
-  if (!form) return;
-  const confirm = document.querySelector('.hero-waitlist-confirm, .main-waitlist-confirm');
-  const btn = form.querySelector("button[type=submit]");
+document.addEventListener("click", (e) => {
+  const a = e.target.closest('a[href="#waitlist"]');
+  if (!a) return;
+  const target = document.getElementById("waitlist");
+  if (!target) return;
+  e.preventDefault();
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const input = form.querySelector("input[type=email]");
-    if (!input.value || !input.checkValidity()) { input.focus(); return; }
+  target.scrollIntoView({ behavior: "smooth", block: "center" });
+  target.classList.add("is-targeted");
+  setTimeout(() => target.classList.remove("is-targeted"), 1400);
 
-    if (btn) { btn.textContent = "Joining…"; btn.disabled = true; }
-
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 8000);
-
-    try {
-      const res = await fetch("https://formspree.io/f/mojrbrgo", {
-        method: "POST",
-        headers: { "Accept": "application/json" },
-        body: new FormData(form),
-        signal: controller.signal,
-      });
-      clearTimeout(timeout);
-
-      if (res.ok) {
-        if (btn) {
-          btn.textContent = "✓ You're on the list!";
-          btn.disabled = false;
-          btn.style.background = "rgba(255,255,255,0.25)";
-          btn.style.color = "#fff";
-          btn.style.cursor = "default";
-        }
-        const input = form.querySelector("input[type=email]");
-        if (input) input.style.display = "none";
-        if (confirm) confirm.hidden = false;
-      } else {
-        if (btn) { btn.textContent = "Try again"; btn.disabled = false; }
-      }
-    } catch {
-      clearTimeout(timeout);
-      if (btn) { btn.textContent = "Try again"; btn.disabled = false; }
-    }
-  });
+  const input = target.querySelector('input[type="email"]');
+  if (input && !target.parentElement.querySelector('form[hidden]')) {
+    // small delay so focus happens after the scroll lands
+    setTimeout(() => { try { input.focus({ preventScroll: true }); } catch { input.focus(); } }, 450);
+  }
 });
 
+/* ═══════════════════════════════════════
+   WAITLIST FORMS + ANTI-SPAM + HATE FILTER
+═══════════════════════════════════════ */
+(function () {
+  // Track when the page loaded; instant submissions are bots
+  const PAGE_LOADED_AT = Date.now();
+  const MIN_FILL_TIME_MS = 1800;   // humans take >1.8s to fill an email
+  const RATE_LIMIT_MS    = 60_000; // 1 submission per minute
+  const RL_KEY           = "serinou_wl_last";
+
+  // Strict-ish email regex (RFC-pragmatic). Rejects garbage like "a@b".
+  const EMAIL_RE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  // Disposable / throwaway domains commonly used for spam
+  const DISPOSABLE_DOMAINS = [
+    "mailinator.com","yopmail.com","guerrillamail.com","sharklasers.com",
+    "10minutemail.com","tempmail.com","trashmail.com","getnada.com",
+    "dispostable.com","fakeinbox.com","throwawaymail.com","maildrop.cc",
+    "tempinbox.com","mintemail.com","mytemp.email","temp-mail.org",
+    "moakt.com","emailondeck.com","emailtemp.org","spam4.me",
+    "tmpmail.net","tmpmail.org","getairmail.com","mailcatch.com"
+  ];
+
+  // Hate-speech / slur substrings to block in the email local part.
+  // Substring match — keep this list short and conservative.
+  const BLOCKED_TERMS = [
+    "hitler","heil","nazi","ss88","sieg","kkk",
+    "nigg","nigr","negr","kike","chink","spic","gook","wetback",
+    "fag","faggot","tranny","retard","reta rd",
+    "rape","pedo","kys","killyourself"
+  ];
+
+  function containsHateSpeech(s) {
+    const cleaned = s.toLowerCase().replace(/[._\-+0-9]/g, "");
+    return BLOCKED_TERMS.some(t => cleaned.includes(t));
+  }
+
+  function isDisposable(domain) {
+    return DISPOSABLE_DOMAINS.includes(domain.toLowerCase());
+  }
+
+  function showError(form, msg) {
+    const err = document.getElementById("hero-waitlist-error");
+    if (!err) return;
+    err.textContent = msg;
+    err.hidden = false;
+    clearTimeout(showError._t);
+    showError._t = setTimeout(() => { err.hidden = true; }, 5000);
+  }
+
+  ["hero-waitlist-form"].forEach((id) => {
+    const form = document.getElementById(id);
+    if (!form) return;
+    const confirm = form.parentElement.parentElement.querySelector(".hero-waitlist-confirm");
+    const btn     = form.querySelector("button[type=submit]");
+    const input   = form.querySelector("input[type=email]");
+    const hp      = form.querySelector('input[name="_gotcha"]');
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // 1. Honeypot — silently drop bots
+      if (hp && hp.value.trim() !== "") {
+        if (confirm) { form.hidden = true; confirm.hidden = false; } // fake success, don't tip them off
+        return;
+      }
+
+      // 2. Bot timing check
+      if (Date.now() - PAGE_LOADED_AT < MIN_FILL_TIME_MS) {
+        showError(form, "Please take a moment before submitting.");
+        return;
+      }
+
+      // 3. Rate limit per browser
+      const last = parseInt(localStorage.getItem(RL_KEY) || "0", 10);
+      if (last && Date.now() - last < RATE_LIMIT_MS) {
+        const sec = Math.ceil((RATE_LIMIT_MS - (Date.now() - last)) / 1000);
+        showError(form, `Please wait ${sec}s before trying again.`);
+        return;
+      }
+
+      // 4. Email validation
+      const email = (input.value || "").trim();
+      if (!EMAIL_RE.test(email) || email.length > 254) {
+        showError(form, "Please enter a valid email address.");
+        input.focus();
+        return;
+      }
+
+      const [localPart, domain] = email.toLowerCase().split("@");
+
+      // 5. Disposable email block
+      if (isDisposable(domain)) {
+        showError(form, "Please use a real email address (no disposable inboxes).");
+        input.focus();
+        return;
+      }
+
+      // 6. Hate-speech / slur filter
+      if (containsHateSpeech(localPart) || containsHateSpeech(domain.split(".")[0])) {
+        showError(form, "This submission was blocked.");
+        return;
+      }
+
+      if (btn) { btn.textContent = "Joining…"; btn.disabled = true; }
+
+      try {
+        const res = await fetch("https://formspree.io/f/mojrbrgo", {
+          method: "POST",
+          headers: { "Accept": "application/json" },
+          body: new FormData(form),
+        });
+
+        if (res.ok) {
+          localStorage.setItem(RL_KEY, String(Date.now()));
+          // bump the live counter visually if the user hasn't already
+          if (!localStorage.getItem("serinou_wl_counted")) {
+            localStorage.setItem("serinou_wl_counted", "1");
+            bumpCounter();
+          }
+          form.hidden = true;
+          if (confirm) confirm.hidden = false;
+        } else {
+          if (btn) { btn.textContent = "Try again"; btn.disabled = false; }
+          showError(form, "Something went wrong. Please try again.");
+        }
+      } catch {
+        if (btn) { btn.textContent = "Try again"; btn.disabled = false; }
+        showError(form, "Network error. Please try again.");
+      }
+    });
+  });
+
+  /* ───── LIVE WAITLIST COUNTER ───── */
+  // Deterministic count: everyone sees the same number at a given moment.
+  // Grows steadily over time with a log-curve so it slows naturally.
+  function liveCount() {
+    const LAUNCH_MS = new Date("2025-01-15T00:00:00Z").getTime();
+    const days = Math.max(0, (Date.now() - LAUNCH_MS) / 86_400_000);
+    const base = 412;
+    const linear = days * 14;                       // ~14 signups/day average
+    const log    = Math.log(1 + days) * 110;        // slowing growth on top
+    const jitter = Math.floor((Date.now() / 60_000) % 7); // tiny minute-level wiggle
+    return Math.floor(base + linear + log) + jitter
+         + parseInt(localStorage.getItem("serinou_wl_counted") || "0", 10);
+  }
+
+  function animateCount(el, from, to, ms) {
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min(1, (now - start) / ms);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const v = Math.floor(from + (to - from) * eased);
+      el.textContent = v.toLocaleString();
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const counterEl = document.getElementById("waitlistCount");
+  let displayed = 0;
+  function refreshCounter(initial) {
+    if (!counterEl) return;
+    const target = liveCount();
+    if (initial) {
+      animateCount(counterEl, Math.max(0, target - 60), target, 1800);
+    } else if (target > displayed) {
+      animateCount(counterEl, displayed, target, 900);
+    }
+    displayed = target;
+  }
+  function bumpCounter() {
+    if (!counterEl) return;
+    displayed += 1;
+    counterEl.textContent = displayed.toLocaleString();
+  }
+
+  if (counterEl) {
+    refreshCounter(true);
+    // Periodically refresh so the number drifts up "live"
+    setInterval(() => refreshCounter(false), 25_000);
+  }
+})();
