@@ -448,21 +448,48 @@ document.addEventListener("click", (e) => {
     });
   });
 
-  /* ───── LIVE WAITLIST COUNTER ───── */
-  // Deterministic count: everyone sees the same number at a given moment.
-  // Grows steadily over time with a log-curve so it slows naturally.
-  function liveCount() {
-    const LAUNCH_MS = new Date("2025-01-15T00:00:00Z").getTime();
-    const days = Math.max(0, (Date.now() - LAUNCH_MS) / 86_400_000);
-    const base = 412;
-    const linear = days * 14;                       // ~14 signups/day average
-    const log    = Math.log(1 + days) * 110;        // slowing growth on top
-    const jitter = Math.floor((Date.now() / 60_000) % 7); // tiny minute-level wiggle
-    return Math.floor(base + linear + log) + jitter
-         + parseInt(localStorage.getItem("serinou_wl_counted") || "0", 10);
+  /* ───── REAL LIVE WAITLIST COUNTER (Abacus API) ───── */
+  // Uses the free Abacus counter API. Every successful waitlist signup
+  // calls /hit which atomically increments a shared global value. Every
+  // page load calls /get to read the current real value.
+  const COUNTER_NS  = "serinou";
+  const COUNTER_KEY = "waitlist";
+  const COUNTER_API = "https://abacus.jasoncameron.dev";
+  const CACHE_KEY   = "serinou_wl_cached_count";
+  const counterEl = document.getElementById("waitlistCount");
+
+  let displayed = 0;
+
+  async function fetchLiveCount() {
+    try {
+      const res = await fetch(`${COUNTER_API}/get/${COUNTER_NS}/${COUNTER_KEY}`, { cache: "no-store" });
+      if (res.status === 404) return 0; // counter not created yet → no signups yet
+      if (!res.ok) throw new Error("api error");
+      const data = await res.json();
+      const v = typeof data.value === "number" ? data.value : 0;
+      localStorage.setItem(CACHE_KEY, String(v));
+      return v;
+    } catch {
+      // fall back to last known value so we never show garbage on flaky networks
+      return parseInt(localStorage.getItem(CACHE_KEY) || "0", 10);
+    }
+  }
+
+  async function bumpLiveCount() {
+    try {
+      const res = await fetch(`${COUNTER_API}/hit/${COUNTER_NS}/${COUNTER_KEY}`, { cache: "no-store" });
+      if (!res.ok) throw new Error("api error");
+      const data = await res.json();
+      const v = typeof data.value === "number" ? data.value : null;
+      if (v !== null) localStorage.setItem(CACHE_KEY, String(v));
+      return v;
+    } catch {
+      return null;
+    }
   }
 
   function animateCount(el, from, to, ms) {
+    if (from === to) { el.textContent = to.toLocaleString(); return; }
     const start = performance.now();
     function tick(now) {
       const p = Math.min(1, (now - start) / ms);
@@ -474,27 +501,43 @@ document.addEventListener("click", (e) => {
     requestAnimationFrame(tick);
   }
 
-  const counterEl = document.getElementById("waitlistCount");
-  let displayed = 0;
-  function refreshCounter(initial) {
+  async function refreshCounter(initial) {
     if (!counterEl) return;
-    const target = liveCount();
+    const target = await fetchLiveCount();
     if (initial) {
-      animateCount(counterEl, Math.max(0, target - 60), target, 1800);
-    } else if (target > displayed) {
-      animateCount(counterEl, displayed, target, 900);
+      animateCount(counterEl, Math.max(0, target - 30), target, 1500);
+    } else if (target !== displayed) {
+      animateCount(counterEl, displayed, target, 700);
     }
     displayed = target;
   }
-  function bumpCounter() {
+
+  async function bumpCounter() {
     if (!counterEl) return;
-    displayed += 1;
-    counterEl.textContent = displayed.toLocaleString();
+    const newValue = await bumpLiveCount();
+    if (newValue !== null) {
+      animateCount(counterEl, displayed, newValue, 600);
+      displayed = newValue;
+    } else {
+      // optimistic local +1 if API failed
+      displayed += 1;
+      counterEl.textContent = displayed.toLocaleString();
+    }
   }
 
   if (counterEl) {
+    // Show last cached value instantly while we fetch fresh data
+    const cached = parseInt(localStorage.getItem(CACHE_KEY) || "0", 10);
+    if (cached > 0) {
+      counterEl.textContent = cached.toLocaleString();
+      displayed = cached;
+    }
     refreshCounter(true);
-    // Periodically refresh so the number drifts up "live"
-    setInterval(() => refreshCounter(false), 25_000);
+    // Re-poll every 30s so new signups from other visitors show up live
+    setInterval(() => refreshCounter(false), 30_000);
+    // Also refresh when the tab regains focus
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) refreshCounter(false);
+    });
   }
 })();
