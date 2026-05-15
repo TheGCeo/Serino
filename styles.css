@@ -237,6 +237,21 @@ img { display: block; max-width: 100%; }
   box-shadow: 0 6px 20px rgba(0,0,0,.16);
 }
 
+/* "Submitted" state on the waitlist button */
+.button-white.is-submitted,
+.button-white.is-submitted:hover {
+  background: #34d399;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(52,211,153,0.35);
+  cursor: default;
+  opacity: 1;
+}
+
+.waitlist-input.is-submitted {
+  opacity: 0.65;
+  cursor: default;
+}
+
 .button-white-outline {
   background: rgba(255,255,255,.15);
   color: #fff;

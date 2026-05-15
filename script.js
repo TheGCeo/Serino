@@ -435,7 +435,16 @@ document.addEventListener("click", (e) => {
             localStorage.setItem("serinou_wl_counted", "1");
             bumpCounter();
           }
-          form.hidden = true;
+          // keep the form visible, just lock it down and flip the button
+          if (btn) {
+            btn.textContent = "Submitted ✓";
+            btn.disabled = true;
+            btn.classList.add("is-submitted");
+          }
+          if (input) {
+            input.readOnly = true;
+            input.classList.add("is-submitted");
+          }
           if (confirm) confirm.hidden = false;
         } else {
           if (btn) { btn.textContent = "Try again"; btn.disabled = false; }
