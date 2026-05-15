@@ -753,16 +753,19 @@ img { display: block; max-width: 100%; }
 .card-featured h3 { color: #fff; }
 .card-featured p { color: rgba(255,255,255,.82); }
 
-.card-num {
-  display: block;
-  margin-bottom: 1.1rem;
-  font-size: 0.74rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
+.card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.4rem;
   color: var(--orange);
 }
 
-.card-num-light { color: rgba(255,255,255,.65); }
+.card-icon svg {
+  width: 2.4rem;
+  height: 2.4rem;
+  display: block;
+}
 
 .card h3 {
   margin: 0 0 0.65rem;
