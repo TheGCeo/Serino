@@ -2381,20 +2381,4 @@ a.blur-in {
   100% { filter: blur(0);    opacity: 1;   transform: translateY(0);     }
 }
 
-/* ── ROCKET LAUNCH ── */
-#rocketWrapper {
-  position: absolute;
-  bottom: 12%;
-  left: 10%;
-  width: 14rem;
-  z-index: 10;
-  pointer-events: none;
-  animation: rocketFly 3s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
-}
-
-@keyframes rocketFly {
-  from { transform: translate(0, 0);         opacity: 1; }
-  80%  { transform: translate(70vw, -65vh);  opacity: 1; }
-  to   { transform: translate(90vw, -85vh);  opacity: 0; }
-}
 
