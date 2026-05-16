@@ -1211,10 +1211,13 @@ img { display: block; max-width: 100%; }
 .site-footer {
   overflow-x: clip;
   min-height: 24rem;
-  display: grid;
-  place-items: end center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   background: var(--white);
-  padding-bottom: 3rem;
+  padding: 3rem 1.5rem;
+  gap: 2rem;
 }
 
 .footer-wordmark {
@@ -2400,3 +2403,127 @@ a.blur-in {
 }
 
 
+
+/* ══════════════════════════════════════
+   LEGAL PAGES (Privacy / Terms / Imprint)
+══════════════════════════════════════ */
+.legal-page {
+  background: #fff;
+  min-height: 100vh;
+  padding: 8rem 1.5rem 6rem;
+}
+
+.legal-container {
+  max-width: 760px;
+  margin: 0 auto;
+  color: #2b2b2b;
+}
+
+.legal-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--orange);
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 2.5rem;
+  text-decoration: none;
+}
+
+.legal-back:hover { text-decoration: underline; }
+
+.legal-container h1 {
+  font-family: "League Spartan", sans-serif;
+  font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin: 0 0 0.6rem;
+  color: #111;
+}
+
+.legal-meta {
+  color: #888;
+  font-size: 0.9rem;
+  margin: 0 0 3rem;
+}
+
+.legal-container h2 {
+  font-family: "League Spartan", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 800;
+  margin: 2.6rem 0 0.9rem;
+  color: #111;
+  letter-spacing: -0.01em;
+}
+
+.legal-container h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 1.6rem 0 0.5rem;
+  color: #222;
+}
+
+.legal-container p,
+.legal-container li {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #4a4a4a;
+}
+
+.legal-container ul,
+.legal-container ol {
+  padding-left: 1.3rem;
+  margin: 0.6rem 0 1.2rem;
+}
+
+.legal-container li { margin-bottom: 0.4rem; }
+
+.legal-container a {
+  color: var(--orange);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.legal-container strong { color: #111; }
+
+.legal-container hr {
+  border: 0;
+  height: 1px;
+  background: #eaeaea;
+  margin: 2.5rem 0;
+}
+
+.legal-container .legal-placeholder {
+  background: #fff4eb;
+  border-left: 3px solid var(--orange);
+  padding: 0.2rem 0.5rem;
+  font-style: normal;
+  color: #c44d00;
+  font-weight: 700;
+  font-size: 0.95em;
+}
+
+/* Footer legal links on main page */
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem 1.5rem;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: rgba(60,40,20,0.55);
+  font-weight: 600;
+}
+
+.footer-links a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.footer-links a:hover { color: var(--orange); }
+
+.footer-links .sep {
+  opacity: 0.4;
+}
