@@ -316,36 +316,104 @@ document.addEventListener("click", (e) => {
 });
 
 /* ═══════════════════════════════════════
-   WAITLIST FORMS + ANTI-SPAM + HATE FILTER
+   WAITLIST FORMS + DEEP ANTI-SPAM + HATE FILTER
 ═══════════════════════════════════════ */
 (function () {
-  // Track when the page loaded; instant submissions are bots
-  const PAGE_LOADED_AT = Date.now();
-  const MIN_FILL_TIME_MS = 1800;   // humans take >1.8s to fill an email
-  const RATE_LIMIT_MS    = 60_000; // 1 submission per minute
-  const RL_KEY           = "serinou_wl_last";
+  // ─── Page-life telemetry (humans take time, bots don't) ───
+  const PAGE_LOADED_AT   = Date.now();
+  const MIN_FILL_TIME_MS = 2500;     // bumped from 1.8s — humans always take >2.5s
+  const RATE_LIMIT_MS    = 60_000;   // 1 submission per minute per browser
+
+  // ─── localStorage keys ───
+  const RL_KEY         = "serinou_wl_last";
+  const FAIL_KEY       = "serinou_wl_fails";       // recent failed validations
+  const SUBMIT_LOG_KEY = "serinou_wl_history";     // last successful submits
+
+  // ─── Soft block thresholds ───
+  const MAX_FAILS_PER_HOUR  = 5;
+  const MAX_SUBMITS_PER_DAY = 3;
+
+  // ─── Interaction telemetry (set by listeners below) ───
+  let userInteracted   = false;   // any mousemove, keypress, scroll, touch
+  let inputFocusedAt   = 0;       // ms timestamp when email input was focused
+  let keystrokeCount   = 0;       // keystrokes inside the email input
 
   // Strict-ish email regex (RFC-pragmatic). Rejects garbage like "a@b".
   const EMAIL_RE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  // Disposable / throwaway domains commonly used for spam
-  const DISPOSABLE_DOMAINS = [
-    "mailinator.com","yopmail.com","guerrillamail.com","sharklasers.com",
-    "10minutemail.com","tempmail.com","trashmail.com","getnada.com",
-    "dispostable.com","fakeinbox.com","throwawaymail.com","maildrop.cc",
-    "tempinbox.com","mintemail.com","mytemp.email","temp-mail.org",
-    "moakt.com","emailondeck.com","emailtemp.org","spam4.me",
-    "tmpmail.net","tmpmail.org","getairmail.com","mailcatch.com"
-  ];
+  // ─── Expanded disposable / throwaway domain list ───
+  const DISPOSABLE_DOMAINS = new Set([
+    // 10-minute family
+    "10minutemail.com","10minutemail.net","10minutemail.org","10minutesmail.com",
+    "10minemail.com","20minutemail.com","30minutemail.com","60minutemail.com",
+    // mailinator family
+    "mailinator.com","mailinator.net","mailinator.org","mailinator2.com",
+    "mailinator2.net","binkmail.com","bobmail.info","chammy.info",
+    // yopmail family
+    "yopmail.com","yopmail.fr","yopmail.net","yopmail.org","yopmail.gq","yopmail.pp.ua",
+    "cool.fr.nf","jetable.fr.nf","nospam.ze.tc","speed.1s.fr","courriel.fr.nf",
+    // guerrillamail family
+    "guerrillamail.com","guerrillamail.net","guerrillamail.org","guerrillamail.biz",
+    "guerrillamail.de","guerrillamailblock.com","sharklasers.com","grr.la",
+    "pokemail.net","spam4.me",
+    // tempmail family
+    "tempmail.com","temp-mail.org","temp-mail.io","temp-mail.ru","temp-mail.de",
+    "tempmailaddress.com","tempinbox.com","tempinbox.email","tempmailo.com",
+    "tempr.email","tempemail.net","tempmailer.com","tmpmail.org","tmpmail.net",
+    "throwam.com","tmail.ws","tmpemails.com","temp-mail.live",
+    // trashmail
+    "trashmail.com","trashmail.net","trashmail.de","trashmail.io","trashmail.ws",
+    "trashinbox.com","trashmail.me","mailtrash.net",
+    // throwaway
+    "throwawaymail.com","throwawaymails.com","throw-away.com","tossmail.com",
+    // maildrop and friends
+    "maildrop.cc","fakeinbox.com","fakemail.com","fakemail.fr","fake-mail.live",
+    "fakeemail.net","emailfake.com","emailfake.cn",
+    // dispostable & co
+    "dispostable.com","mintemail.com","mytemp.email","moakt.com","mailmoat.com",
+    "mailcatch.com","mailcat.club","mailpoof.com","mailto.plus","mail.tm",
+    "mailhz.me","fakemailgenerator.net","emailondeck.com","emailtemp.org",
+    "getairmail.com","getnada.com","nada.email","spambox.us","spamgourmet.com",
+    "spamex.com","spambog.com","spambog.de","spambog.ru","spambooger.com",
+    // numbered + miscellaneous
+    "1secmail.com","1secmail.net","1secmail.org","33mail.com","anonbox.net",
+    "anonymbox.com","disposable-email.com","dropmail.me","hi2.in",
+    "instantemailaddress.com","smailpro.com","mohmal.com","inboxbear.com",
+    "inboxalias.com","owlymail.com","mailnator.com","sneakemail.com",
+    "tilien.com","oysternet.email","mt2014.com","mt2015.com","mt2016.com",
+    "mt2017.com","mt2018.com","mt2019.com","mt2020.com","mt2021.com",
+    "mt2022.com","mt2023.com","mt2024.com","mt2025.com","mt2026.com",
+    "e4ward.com","xemaps.com","mail-temporaire.fr","ezehe.com","getairmail.net",
+    "burnermail.io","emailisvalid.com","fudgerub.com","gmial.com","gnial.com",
+    "asdasd.nl","mailpoof.com","tmail.com","email-fake.com","email-fake.net",
+    // RFC test domains (should never appear in real signups)
+    "example.com","example.net","example.org","test.com","test.net","test.org",
+    "invalid.com","localhost","domain.com","email.com","sample.com",
+    "yourdomain.com","fakeemail.com"
+  ]);
 
-  // Hate-speech / slur substrings to block in the email local part.
-  // Substring match — keep this list short and conservative.
+  // ─── Hate-speech / slur substrings ───
   const BLOCKED_TERMS = [
     "hitler","heil","nazi","ss88","sieg","kkk",
     "nigg","nigr","negr","kike","chink","spic","gook","wetback",
-    "fag","faggot","tranny","retard","reta rd",
-    "rape","pedo","kys","killyourself"
+    "fag","faggot","tranny","retard",
+    "rape","pedo","kys","killyourself",
+    "fuck","shit","bitch","asshole","cunt"
   ];
+
+  // ─── Obviously-fake email local parts ───
+  function isFakeLooking(local) {
+    if (!local) return true;
+    if (local.length < 2) return true;
+    if (local.length > 64) return true;                   // RFC 5321 limit
+    if (/^[0-9]+$/.test(local)) return true;              // all digits
+    if (/^[0-9]{6,}/.test(local)) return true;            // starts with 6+ digits
+    if (/(.)\1{4,}/.test(local)) return true;             // 5x same char in a row
+    if ((local.match(/\./g) || []).length > 3) return true;
+    if (/^(test|asdf|qwerty|abc|noreply|no-reply|null|none|nobody|anonymous|user|guest|admin|root|spam|123|abcd|aaaa)$/i.test(local)) return true;
+    if (/^[a-z]{1,2}[0-9]{6,}$/i.test(local)) return true; // typical bot pattern: ab123456
+    return false;
+  }
 
   function containsHateSpeech(s) {
     const cleaned = s.toLowerCase().replace(/[._\-+0-9]/g, "");
@@ -353,9 +421,39 @@ document.addEventListener("click", (e) => {
   }
 
   function isDisposable(domain) {
-    return DISPOSABLE_DOMAINS.includes(domain.toLowerCase());
+    return DISPOSABLE_DOMAINS.has(domain.toLowerCase());
   }
 
+  // ─── Persistent fail-count tracking (soft IP-like rep) ───
+  function recordFail() {
+    const now = Date.now();
+    const list = JSON.parse(localStorage.getItem(FAIL_KEY) || "[]")
+                   .filter(t => now - t < 3_600_000); // last 1h only
+    list.push(now);
+    localStorage.setItem(FAIL_KEY, JSON.stringify(list));
+    return list.length;
+  }
+  function recentFailCount() {
+    const now = Date.now();
+    return JSON.parse(localStorage.getItem(FAIL_KEY) || "[]")
+            .filter(t => now - t < 3_600_000).length;
+  }
+
+  // ─── Persistent submission history (per-day burst limit) ───
+  function recordSubmit() {
+    const now = Date.now();
+    const list = JSON.parse(localStorage.getItem(SUBMIT_LOG_KEY) || "[]")
+                   .filter(t => now - t < 86_400_000); // last 24h
+    list.push(now);
+    localStorage.setItem(SUBMIT_LOG_KEY, JSON.stringify(list));
+  }
+  function recentSubmitCount() {
+    const now = Date.now();
+    return JSON.parse(localStorage.getItem(SUBMIT_LOG_KEY) || "[]")
+            .filter(t => now - t < 86_400_000).length;
+  }
+
+  // ─── Show error message under the form ───
   function showError(form, msg) {
     const err = document.getElementById("hero-waitlist-error");
     if (!err) return;
@@ -365,30 +463,91 @@ document.addEventListener("click", (e) => {
     showError._t = setTimeout(() => { err.hidden = true; }, 5000);
   }
 
+  // ─── Wire interaction listeners (any genuine activity on the page) ───
+  const setInteracted = () => { userInteracted = true; };
+  ["mousemove","keydown","scroll","touchstart","pointerdown"].forEach(ev =>
+    window.addEventListener(ev, setInteracted, { once: true, passive: true })
+  );
+
   ["hero-waitlist-form"].forEach((id) => {
     const form = document.getElementById(id);
     if (!form) return;
     const confirm = form.parentElement.parentElement.querySelector(".hero-waitlist-confirm");
     const btn     = form.querySelector("button[type=submit]");
     const input   = form.querySelector("input[type=email]");
-    const hp      = form.querySelector('input[name="_gotcha"]');
+    const honeypots = form.querySelectorAll('.hp-field input');
+
+    // Track focus + typing on the email input
+    if (input) {
+      input.addEventListener("focus", () => { if (!inputFocusedAt) inputFocusedAt = Date.now(); }, { once: false });
+      input.addEventListener("keydown", () => { keystrokeCount++; }, { passive: true });
+    }
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      // 1. Honeypot — silently drop bots
-      if (hp && hp.value.trim() !== "") {
-        if (confirm) { form.hidden = true; confirm.hidden = false; } // fake success, don't tip them off
+      // LAYER 1: trust the event — programmatic .submit() / .click() fails
+      if (e.isTrusted === false) {
+        // fake success so the bot doesn't retry with a different payload
+        if (confirm) { form.hidden = true; confirm.hidden = false; }
         return;
       }
 
-      // 2. Bot timing check
+      // LAYER 2: same-origin sanity check — form must be on our domain
+      if (window.location.protocol !== "https:" && window.location.protocol !== "http:") return;
+
+      // LAYER 3: ALL honeypots must be empty (4 of them, deceptive names)
+      for (const hp of honeypots) {
+        if (hp.value.trim() !== "") {
+          if (confirm) { form.hidden = true; confirm.hidden = false; }
+          recordFail();
+          return;
+        }
+      }
+
+      // LAYER 4: page must have been alive long enough
       if (Date.now() - PAGE_LOADED_AT < MIN_FILL_TIME_MS) {
         showError(form, "Please take a moment before submitting.");
+        recordFail();
         return;
       }
 
-      // 3. Rate limit per browser
+      // LAYER 5: there must have been some real interaction on the page
+      if (!userInteracted) {
+        showError(form, "Please interact with the page before submitting.");
+        recordFail();
+        return;
+      }
+
+      // LAYER 6: the input must have been focused, and focused long enough
+      if (!inputFocusedAt || Date.now() - inputFocusedAt < 700) {
+        showError(form, "Please type your email in the field.");
+        if (input) input.focus();
+        recordFail();
+        return;
+      }
+
+      // LAYER 7: at least 4 keystrokes inside the email input (humans type, bots paste-and-submit)
+      if (keystrokeCount < 4) {
+        showError(form, "Please type your email in the field.");
+        if (input) input.focus();
+        recordFail();
+        return;
+      }
+
+      // LAYER 8: failure-based soft block (5 fails in 1h = 10 min cool-down)
+      if (recentFailCount() >= MAX_FAILS_PER_HOUR) {
+        showError(form, "Too many invalid attempts. Please try again later.");
+        return;
+      }
+
+      // LAYER 9: per-day burst limit (3 successful submits in 24h max)
+      if (recentSubmitCount() >= MAX_SUBMITS_PER_DAY) {
+        showError(form, "You've already joined. Check your inbox.");
+        return;
+      }
+
+      // LAYER 10: per-minute rate limit
       const last = parseInt(localStorage.getItem(RL_KEY) || "0", 10);
       if (last && Date.now() - last < RATE_LIMIT_MS) {
         const sec = Math.ceil((RATE_LIMIT_MS - (Date.now() - last)) / 1000);
@@ -396,26 +555,44 @@ document.addEventListener("click", (e) => {
         return;
       }
 
-      // 4. Email validation
+      // LAYER 11: strict email format
       const email = (input.value || "").trim();
-      if (!EMAIL_RE.test(email) || email.length > 254) {
+      if (!EMAIL_RE.test(email) || email.length > 254 || email.length < 6) {
         showError(form, "Please enter a valid email address.");
         input.focus();
+        recordFail();
         return;
       }
 
       const [localPart, domain] = email.toLowerCase().split("@");
 
-      // 5. Disposable email block
-      if (isDisposable(domain)) {
-        showError(form, "Please use a real email address (no disposable inboxes).");
-        input.focus();
+      // LAYER 12: domain must have a valid TLD (no IP literals, no single-segment)
+      if (!domain || domain.indexOf(".") < 0 || /[^a-z0-9.-]/.test(domain)) {
+        showError(form, "Please enter a valid email address.");
+        recordFail();
         return;
       }
 
-      // 6. Hate-speech / slur filter
+      // LAYER 13: disposable email block (now ~140 domains)
+      if (isDisposable(domain)) {
+        showError(form, "Please use a real email address (no disposable inboxes).");
+        input.focus();
+        recordFail();
+        return;
+      }
+
+      // LAYER 14: obviously-fake local-part patterns
+      if (isFakeLooking(localPart)) {
+        showError(form, "Please use a real email address.");
+        input.focus();
+        recordFail();
+        return;
+      }
+
+      // LAYER 15: hate-speech / slur filter
       if (containsHateSpeech(localPart) || containsHateSpeech(domain.split(".")[0])) {
         showError(form, "This submission was blocked.");
+        recordFail();
         return;
       }
 
@@ -430,6 +607,7 @@ document.addEventListener("click", (e) => {
 
         if (res.ok) {
           localStorage.setItem(RL_KEY, String(Date.now()));
+          recordSubmit(); // adds timestamp to the 24h burst-limit log
           // bump the live counter visually if the user hasn't already
           if (!localStorage.getItem("serinou_wl_counted")) {
             localStorage.setItem("serinou_wl_counted", "1");

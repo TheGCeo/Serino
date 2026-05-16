@@ -80,8 +80,13 @@
                 </div>
                 <form class="waitlist-form hero-waitlist hero-line" id="hero-waitlist-form" novalidate>
                   <input type="email" name="email" placeholder="your@email.com" class="waitlist-input" required aria-label="Email address" />
-                  <!-- honeypot: real users won't fill this; bots usually do -->
-                  <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
+                  <!-- Multiple honeypots with deceptive field names. Real users won't fill these; bots auto-fill anything that looks like a real field. -->
+                  <div class="hp-field" aria-hidden="true">
+                    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+                    <input type="text" name="phone"   tabindex="-1" autocomplete="off" />
+                    <input type="url"  name="website" tabindex="-1" autocomplete="off" />
+                    <input type="text" name="address" tabindex="-1" autocomplete="off" />
+                  </div>
                   <button type="submit" class="button button-white">Join the Waitlist</button>
                 </form>
               </div>

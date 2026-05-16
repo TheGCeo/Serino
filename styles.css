@@ -449,7 +449,7 @@ img { display: block; max-width: 100%; }
   font-size: 0.9rem;
 }
 
-/* honeypot: visually & accessibly hidden, but in the DOM for bots */
+/* honeypot wrapper: visually & accessibly hidden, but in the DOM for bots */
 .hp-field {
   position: absolute !important;
   left: -10000px !important;
@@ -460,6 +460,8 @@ img { display: block; max-width: 100%; }
   opacity: 0 !important;
   pointer-events: none !important;
 }
+
+.hp-field input { width: 1px; height: 1px; }
 
 /* ── LIVE WAITLIST COUNTER ── */
 .waitlist-counter {
