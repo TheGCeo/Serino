@@ -2276,19 +2276,29 @@ img { display: block; max-width: 100%; }
   .feat-card  { padding: 1.75rem; }
 
   /* tighter scroll runway + stacked layout for the zoom showcase */
-  .zoom-section { height: 220vh; }
+  .zoom-section { height: 200vh; }
   .zoom-inner {
     grid-template-columns: 1fr;
     grid-template-areas:
       "left"
       "phone"
       "right";
-    gap: 1.5rem;
+    gap: 1.25rem;
     padding: 0 1.25rem;
   }
   .showcase-col--left  { grid-area: left;  text-align: center; }
   .zoom-phone          { grid-area: phone; }
   .showcase-col--right { grid-area: right; text-align: center; }
+
+  /* shrink the phone mockup so it never overflows even at peak scale (1.10) */
+  .zp-img { width: 220px; }
+
+  /* tighter showcase-column text on mobile */
+  .sc-line { font-size: clamp(1.7rem, 8vw, 2.4rem); }
+
+  /* slimmer side-slide so columns don't fly across the whole viewport */
+  .showcase-col--left  { transform: translateX(-20vw); }
+  .showcase-col--right { transform: translateX(20vw);  }
 }
 
 /* ══════════════════════════════════════
