@@ -295,6 +295,19 @@ document.querySelectorAll(".faq-q").forEach((btn) => {
 });
 
 /* ═══════════════════════════════════════
+   BLUR-IN CLEANUP — drop the class after the animation ends so
+   the animation's persisted (fill-mode: both) final-keyframe values
+   stop overriding scrolled-state CSS rules (esp. on mobile where
+   the compact pill collides with the still-pinned-at-opacity-1
+   "Join Waitlist" button in the full header).
+═══════════════════════════════════════ */
+document.addEventListener('animationend', (e) => {
+  if (e.animationName === 'blurIn' && e.target.classList.contains('blur-in')) {
+    e.target.classList.remove('blur-in');
+  }
+});
+
+/* ═══════════════════════════════════════
    "JOIN WAITLIST" ANCHOR — scroll, focus, highlight
 ═══════════════════════════════════════ */
 document.addEventListener("click", (e) => {
