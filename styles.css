@@ -505,44 +505,50 @@ img { display: block; max-width: 100%; }
 .tier-waitlist-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
+  gap: 1rem;
   width: 100%;
-  margin-top: 2.5rem;
+  max-width: 760px;
+  margin: 2.5rem 0 0;
   scroll-margin-top: 6rem;
+  align-items: stretch;
 }
 
 .tier-card {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 1.6rem 1.5rem 1.4rem;
-  border-radius: 22px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.22);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  padding: 1.4rem 1.35rem 1.35rem;
+  border-radius: 20px;
   transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background 220ms ease;
 }
 
-.tier-card:hover {
-  transform: translateY(-2px);
-  background: rgba(255,255,255,0.11);
-  border-color: rgba(255,255,255,0.34);
-}
+.tier-card:hover { transform: translateY(-2px); }
 
 .tier-card.is-targeted {
-  box-shadow: 0 0 0 3px rgba(255,255,255,0.45), 0 12px 40px rgba(0,0,0,0.18);
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.55), 0 12px 40px rgba(0,0,0,0.22);
   transition: box-shadow 600ms ease;
 }
 
+/* FREE — glassy, subtle */
+.tier-card-free {
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.28);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.tier-card-free:hover {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.42);
+}
+
+/* PREMIUM — solid light card, strong contrast */
 .tier-card-pro {
-  background: rgba(255,255,255,0.12);
-  border-color: rgba(255,255,255,0.45);
-  box-shadow: 0 12px 36px rgba(0,0,0,0.18);
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 18px 48px rgba(0,0,0,0.22), 0 2px 6px rgba(0,0,0,0.08);
 }
 .tier-card-pro:hover {
-  background: rgba(255,255,255,0.16);
-  border-color: rgba(255,255,255,0.6);
+  box-shadow: 0 22px 56px rgba(0,0,0,0.28), 0 2px 6px rgba(0,0,0,0.08);
 }
 
 .tier-card-badge {
@@ -550,15 +556,15 @@ img { display: block; max-width: 100%; }
   top: -11px;
   left: 50%;
   transform: translateX(-50%);
-  background: #fff;
-  color: var(--orange);
+  background: var(--orange);
+  color: #fff;
   font-size: 10px;
   font-weight: 800;
-  padding: 4px 14px;
+  padding: 4px 12px;
   border-radius: 999px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.16);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.22);
   white-space: nowrap;
 }
 
@@ -567,76 +573,105 @@ img { display: block; max-width: 100%; }
   align-items: baseline;
   justify-content: space-between;
   gap: 0.6rem;
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.55rem;
 }
 
 .tier-card-label {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.78);
 }
 
-.tier-card-label-pro {
-  color: #fff;
-}
+.tier-card-free .tier-card-label   { color: rgba(255,255,255,0.78); }
+.tier-card-free .tier-card-price   { color: #fff; }
+.tier-card-free .tier-card-price span { color: rgba(255,255,255,0.72); }
+.tier-card-free .tier-card-desc    { color: rgba(255,255,255,0.82); }
+
+.tier-card-pro .tier-card-label    { color: var(--orange); }
+.tier-card-pro .tier-card-price    { color: var(--ink, #1a1a1a); }
+.tier-card-pro .tier-card-price span { color: rgba(0,0,0,0.5); }
+.tier-card-pro .tier-card-desc     { color: rgba(0,0,0,0.66); }
 
 .tier-card-price {
   font-family: "League Spartan", sans-serif;
-  font-size: 1.65rem;
+  font-size: 1.55rem;
   font-weight: 800;
-  color: #fff;
   line-height: 1;
+  white-space: nowrap;
 }
-
 .tier-card-price span {
   font-family: "Manrope", sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  color: rgba(255,255,255,0.7);
-  margin-left: 0.2rem;
+  margin-left: 0.15rem;
   letter-spacing: 0;
 }
 
 .tier-card-desc {
-  margin: 0 0 1.1rem;
-  font-size: 0.86rem;
+  margin: 0 0 1rem;
+  font-size: 0.84rem;
   line-height: 1.45;
-  color: rgba(255,255,255,0.82);
-  min-height: 2.7em;
 }
 
 .tier-waitlist-form {
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
+  gap: 0.5rem;
+  margin-top: auto;
 }
 
 .tier-input {
   width: 100%;
-  min-height: 3rem;
-  padding: 0.85rem 1.2rem;
-  font-size: 0.95rem;
+  min-height: 2.85rem;
+  padding: 0.75rem 1.1rem;
+  font-size: 0.92rem;
+  font-weight: 500;
   text-align: left;
+  border-radius: 12px;
+}
+
+/* Free card has its own slightly translucent input look */
+.tier-card-free .tier-input {
+  background: rgba(255,255,255,0.95);
+}
+.tier-card-pro .tier-input {
+  background: #f6f3ee;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.tier-card-pro .tier-input:focus {
+  box-shadow: 0 0 0 3px rgba(232,99,26,0.22);
+  background: #fff;
 }
 
 .tier-submit {
   width: 100%;
-  min-height: 3rem;
-  padding: 0.85rem 1.2rem;
-  font-size: 0.95rem;
+  min-height: 2.85rem;
+  padding: 0.75rem 1.1rem;
+  font-size: 0.92rem;
+  font-weight: 800;
   text-align: center;
+  border-radius: 12px;
 }
 
+/* Free CTA: white-on-glass */
+.tier-card-free .tier-submit {
+  background: #fff;
+  color: var(--orange);
+}
+.tier-card-free .tier-submit:hover {
+  background: rgba(255,255,255,0.92);
+}
+
+/* Premium CTA: solid orange on white card → high contrast */
 .button-orange {
   background: var(--orange);
   color: #fff;
-  box-shadow: 0 6px 20px rgba(232,99,26,0.45);
+  box-shadow: 0 8px 20px rgba(232,99,26,0.32);
 }
 .button-orange:hover {
   background: var(--orange-hover, #d75516);
-  box-shadow: 0 8px 24px rgba(232,99,26,0.55);
+  box-shadow: 0 10px 26px rgba(232,99,26,0.42);
 }
 .button-orange.is-submitted,
 .button-orange.is-submitted:hover {
@@ -647,26 +682,33 @@ img { display: block; max-width: 100%; }
   opacity: 1;
 }
 
+/* Confirm/error per card — color adapts to card bg */
 .tier-confirm {
   margin: 0.7rem 0 0;
-  font-size: 0.86rem;
+  font-size: 0.84rem;
   font-weight: 700;
-  color: #d6ffe9;
 }
-
 .tier-error {
   margin: 0.55rem 0 0;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  color: #ffdcd0;
 }
+.tier-card-free .tier-confirm { color: #d6ffe9; }
+.tier-card-free .tier-error   { color: #ffdcd0; }
+.tier-card-pro  .tier-confirm { color: #15803d; }
+.tier-card-pro  .tier-error   { color: #b91c1c; }
 
 @media (max-width: 760px) {
   .tier-waitlist-row {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    margin-top: 2rem;
   }
-  .tier-card-desc { min-height: 0; }
+  .tier-card { padding: 1.3rem 1.2rem 1.25rem; }
+  .tier-card-pro { box-shadow: 0 10px 28px rgba(0,0,0,0.18); }
+  .tier-card-head { margin-bottom: 0.4rem; }
+  .tier-card-price { font-size: 1.45rem; }
+  .tier-card-desc { font-size: 0.82rem; margin-bottom: 0.85rem; }
 }
 
 .hero-pills {
