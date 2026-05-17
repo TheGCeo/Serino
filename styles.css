@@ -2490,30 +2490,35 @@ img { display: block; max-width: 100%; }
   .feat-row-4 { grid-template-columns: 1fr; }
   .feat-card  { padding: 1.75rem; }
 
-  /* tighter scroll runway + stacked layout for the zoom showcase */
-  .zoom-section { height: 200vh; }
+  /* Mobile: kill the scroll-pin showcase entirely.
+     The pinned/translated side columns overlap the phone and get
+     clipped by the compact header. Render as a normal section instead:
+     hide the decorative side-text, center a static phone, no sticky. */
+  .zoom-section {
+    height: auto;
+    padding: 4rem 0 5rem;
+  }
   .zoom-inner {
+    position: static;
+    height: auto;
+    overflow: visible;
     grid-template-columns: 1fr;
-    grid-template-areas:
-      "left"
-      "phone"
-      "right";
-    gap: 1.25rem;
+    grid-template-areas: "phone";
+    gap: 0;
     padding: 0 1.25rem;
   }
-  .showcase-col--left  { grid-area: left;  text-align: center; }
-  .zoom-phone          { grid-area: phone; }
-  .showcase-col--right { grid-area: right; text-align: center; }
-
-  /* shrink the phone mockup so it never overflows even at peak scale (1.10) */
-  .zp-img { width: 220px; }
-
-  /* tighter showcase-column text on mobile */
-  .sc-line { font-size: clamp(1.7rem, 8vw, 2.4rem); }
-
-  /* slimmer side-slide so columns don't fly across the whole viewport */
-  .showcase-col--left  { transform: translateX(-20vw); }
-  .showcase-col--right { transform: translateX(20vw);  }
+  .showcase-col { display: none !important; }
+  .zoom-phone {
+    grid-area: phone;
+    transform: none !important;       /* override JS-injected transform */
+    opacity: 1 !important;
+    will-change: auto;
+  }
+  .zp-img {
+    width: min(72vw, 280px);
+    height: auto;
+    margin: 0 auto;
+  }
 }
 
 /* ══════════════════════════════════════
