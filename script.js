@@ -311,19 +311,25 @@ document.addEventListener('animationend', (e) => {
    "JOIN WAITLIST" ANCHOR — scroll, focus, highlight
 ═══════════════════════════════════════ */
 document.addEventListener("click", (e) => {
-  const a = e.target.closest('a[href="#waitlist"]');
+  const a = e.target.closest('a[href^="#waitlist"]');
   if (!a) return;
-  const target = document.getElementById("waitlist");
+  const href = a.getAttribute("href");
+  // Accept #waitlist, #waitlist-free, #waitlist-premium
+  const targetId = href.slice(1);
+  const target = document.getElementById(targetId) || document.getElementById("waitlist");
   if (!target) return;
   e.preventDefault();
 
   target.scrollIntoView({ behavior: "smooth", block: "center" });
-  target.classList.add("is-targeted");
-  setTimeout(() => target.classList.remove("is-targeted"), 1400);
 
-  const input = target.querySelector('input[type="email"]');
-  if (input && !target.parentElement.querySelector('form[hidden]')) {
-    // small delay so focus happens after the scroll lands
+  // Highlight: if a specific tier card was targeted, glow just that card.
+  // Otherwise glow the whole row.
+  const glow = target.classList.contains("tier-card") ? target : target;
+  glow.classList.add("is-targeted");
+  setTimeout(() => glow.classList.remove("is-targeted"), 1400);
+
+  const input = target.querySelector('input[type="email"]:not([readonly])');
+  if (input) {
     setTimeout(() => { try { input.focus({ preventScroll: true }); } catch { input.focus(); } }, 450);
   }
 });
@@ -466,14 +472,16 @@ document.addEventListener("click", (e) => {
             .filter(t => now - t < 86_400_000).length;
   }
 
-  // ─── Show error message under the form ───
+  // ─── Show error message under the form (per-tier card if available) ───
   function showError(form, msg) {
-    const err = document.getElementById("hero-waitlist-error");
+    const local = form && form.parentElement && form.parentElement.querySelector(".tier-error");
+    const err = local || document.getElementById("hero-waitlist-error");
     if (!err) return;
     err.textContent = msg;
     err.hidden = false;
-    clearTimeout(showError._t);
-    showError._t = setTimeout(() => { err.hidden = true; }, 5000);
+    const key = local ? "_tl" : "_t";
+    clearTimeout(showError[key]);
+    showError[key] = setTimeout(() => { err.hidden = true; }, 5000);
   }
 
   // ─── Wire interaction listeners (any genuine activity on the page) ───
@@ -482,10 +490,10 @@ document.addEventListener("click", (e) => {
     window.addEventListener(ev, setInteracted, { once: true, passive: true })
   );
 
-  ["hero-waitlist-form"].forEach((id) => {
+  ["hero-waitlist-form-free", "hero-waitlist-form-premium"].forEach((id) => {
     const form = document.getElementById(id);
     if (!form) return;
-    const confirm = form.parentElement.parentElement.querySelector(".hero-waitlist-confirm");
+    const confirm = form.parentElement.querySelector(".tier-confirm");
     const btn     = form.querySelector("button[type=submit]");
     const input   = form.querySelector("input[type=email]");
     const honeypots = form.querySelectorAll('.hp-field input');
@@ -512,7 +520,7 @@ document.addEventListener("click", (e) => {
       // LAYER 3: ALL honeypots must be empty (4 of them, deceptive names)
       for (const hp of honeypots) {
         if (hp.value.trim() !== "") {
-          if (confirm) { form.hidden = true; confirm.hidden = false; }
+          if (confirm) confirm.hidden = false;
           recordFail();
           return;
         }
@@ -612,7 +620,7 @@ document.addEventListener("click", (e) => {
       if (btn) { btn.textContent = "Joining…"; btn.disabled = true; }
 
       try {
-        const res = await fetch("https://formspree.io/f/mojrbrgo", {
+        const res = await fetch("https://formspree.io/f/mkoennkw", {
           method: "POST",
           headers: { "Accept": "application/json" },
           body: new FormData(form),
@@ -628,7 +636,8 @@ document.addEventListener("click", (e) => {
           }
           // keep the form visible, just lock it down and flip the button
           if (btn) {
-            btn.textContent = "Submitted ✓";
+            const tier = form.dataset.tier === "premium" ? "Premium" : "Free";
+            btn.textContent = `You're on the ${tier} list ✓`;
             btn.disabled = true;
             btn.classList.add("is-submitted");
           }

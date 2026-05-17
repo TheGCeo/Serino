@@ -501,6 +501,174 @@ img { display: block; max-width: 100%; }
   100% { box-shadow: 0 0 0 0 rgba(74,222,128,0);       }
 }
 
+/* ── DUAL-TIER HERO WAITLIST ── */
+.tier-waitlist-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  width: 100%;
+  margin-top: 2.5rem;
+  scroll-margin-top: 6rem;
+}
+
+.tier-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.6rem 1.5rem 1.4rem;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.22);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background 220ms ease;
+}
+
+.tier-card:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.11);
+  border-color: rgba(255,255,255,0.34);
+}
+
+.tier-card.is-targeted {
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.45), 0 12px 40px rgba(0,0,0,0.18);
+  transition: box-shadow 600ms ease;
+}
+
+.tier-card-pro {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.45);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.18);
+}
+.tier-card-pro:hover {
+  background: rgba(255,255,255,0.16);
+  border-color: rgba(255,255,255,0.6);
+}
+
+.tier-card-badge {
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  color: var(--orange);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 14px;
+  border-radius: 999px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.16);
+  white-space: nowrap;
+}
+
+.tier-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.65rem;
+}
+
+.tier-card-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.78);
+}
+
+.tier-card-label-pro {
+  color: #fff;
+}
+
+.tier-card-price {
+  font-family: "League Spartan", sans-serif;
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+
+.tier-card-price span {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  margin-left: 0.2rem;
+  letter-spacing: 0;
+}
+
+.tier-card-desc {
+  margin: 0 0 1.1rem;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.82);
+  min-height: 2.7em;
+}
+
+.tier-waitlist-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.tier-input {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.85rem 1.2rem;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.tier-submit {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.85rem 1.2rem;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.button-orange {
+  background: var(--orange);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(232,99,26,0.45);
+}
+.button-orange:hover {
+  background: var(--orange-hover, #d75516);
+  box-shadow: 0 8px 24px rgba(232,99,26,0.55);
+}
+.button-orange.is-submitted,
+.button-orange.is-submitted:hover {
+  background: #34d399;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(52,211,153,0.35);
+  cursor: default;
+  opacity: 1;
+}
+
+.tier-confirm {
+  margin: 0.7rem 0 0;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #d6ffe9;
+}
+
+.tier-error {
+  margin: 0.55rem 0 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #ffdcd0;
+}
+
+@media (max-width: 760px) {
+  .tier-waitlist-row {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .tier-card-desc { min-height: 0; }
+}
+
 .hero-pills {
   display: flex;
   flex-wrap: wrap;
@@ -2403,6 +2571,154 @@ img { display: block; max-width: 100%; }
   .stat-divider { width: 4rem; height: 1px; }
 
   .site-footer { min-height: 8rem; }
+}
+
+/* ══════════════════════════════════════
+   PRICING SECTION
+══════════════════════════════════════ */
+.pricing-section { background: #faf6f1; }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 880px;
+  margin: 2.5rem auto 0;
+}
+
+.pricing-tier {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.75rem 1.75rem;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 22px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.pricing-tier:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+}
+
+.pricing-tier-pro {
+  border: 1.5px solid var(--orange);
+  box-shadow: 0 10px 32px rgba(232,99,26,0.14);
+}
+
+.pt-badge {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--orange);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 6px 16px rgba(232,99,26,0.35);
+}
+
+.pt-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+}
+
+.pt-name {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.55);
+}
+.pt-name-pro { color: var(--orange); }
+
+.pt-price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+.pt-price strong {
+  font-family: "League Spartan", sans-serif;
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: var(--ink, #1a1a1a);
+  line-height: 1;
+}
+.pt-price span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(0,0,0,0.5);
+}
+
+.pt-desc {
+  margin: 0 0 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: rgba(0,0,0,0.7);
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.pt-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  flex: 1;
+}
+.pt-list li {
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: rgba(0,0,0,0.78);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+.pt-list li.pt-dim { color: rgba(0,0,0,0.45); }
+.pt-check {
+  color: var(--orange);
+  font-weight: 800;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+.pt-dim-check { color: rgba(0,0,0,0.35); }
+
+.pt-cta {
+  width: 100%;
+  text-align: center;
+}
+
+.button-outline-dark {
+  background: #fff;
+  color: var(--ink, #1a1a1a);
+  border: 1.5px solid rgba(0,0,0,0.18);
+}
+.button-outline-dark:hover {
+  background: #f7f5f1;
+  border-color: rgba(0,0,0,0.32);
+}
+
+.pricing-note {
+  text-align: center;
+  margin: 2rem auto 0;
+  font-size: 0.9rem;
+  color: rgba(0,0,0,0.55);
+  max-width: 36rem;
+}
+
+@media (max-width: 760px) {
+  .pricing-grid { grid-template-columns: 1fr; gap: 1.75rem; }
 }
 
 /* ── BLUR-IN INTRO (header brand + nav, first load) ── */

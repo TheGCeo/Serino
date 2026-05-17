@@ -33,6 +33,7 @@
             <a class="blur-in" style="--i:8" href="#how-it-works">How it works</a>
             <a class="blur-in" style="--i:9" href="#science">Science</a>
             <a class="blur-in" style="--i:10" href="#features">Features</a>
+            <a class="blur-in" style="--i:10" href="#pricing">Pricing</a>
           </nav>
           <a class="button button-white-outline header-full blur-in" style="--i:11" href="#waitlist">Join Waitlist</a>
 
@@ -72,26 +73,55 @@
               <div class="hero-line-wrap" style="--d:.42s"><span class="hero-line">PROGRESS.</span></div>
             </h1>
             <div class="hero-line-wrap" style="--d:.58s">
-              <div class="hero-waitlist-row" id="waitlist">
-                <div class="glow-arrow" aria-hidden="true">
-                  <svg viewBox="0 0 64 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 20 L52 20 M38 6 L52 20 L38 34" stroke="white" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-                <form class="waitlist-form hero-waitlist hero-line" id="hero-waitlist-form" novalidate>
-                  <input type="email" name="email" placeholder="your@email.com" class="waitlist-input" required aria-label="Email address" />
-                  <!-- Multiple honeypots with deceptive field names. Real users won't fill these; bots auto-fill anything that looks like a real field. -->
-                  <div class="hp-field" aria-hidden="true">
-                    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
-                    <input type="text" name="phone"   tabindex="-1" autocomplete="off" />
-                    <input type="url"  name="website" tabindex="-1" autocomplete="off" />
-                    <input type="text" name="address" tabindex="-1" autocomplete="off" />
+              <div class="tier-waitlist-row hero-line" id="waitlist">
+
+                <!-- FREE TIER WAITLIST -->
+                <div class="tier-card tier-card-free" id="waitlist-free">
+                  <div class="tier-card-head">
+                    <span class="tier-card-label">Free</span>
+                    <span class="tier-card-price">€0<span>/forever</span></span>
                   </div>
-                  <button type="submit" class="button button-white">Join the Waitlist</button>
-                </form>
+                  <p class="tier-card-desc">Lock-screen micro-lessons, 3 curated decks, spaced repetition, streaks.</p>
+                  <form class="tier-waitlist-form" id="hero-waitlist-form-free" data-tier="free" novalidate>
+                    <input type="hidden" name="tier" value="Free" />
+                    <input type="email" name="email" placeholder="your@email.com" class="waitlist-input tier-input" required aria-label="Email address for Free waitlist" />
+                    <div class="hp-field" aria-hidden="true">
+                      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+                      <input type="text" name="phone"   tabindex="-1" autocomplete="off" />
+                      <input type="url"  name="website" tabindex="-1" autocomplete="off" />
+                      <input type="text" name="address" tabindex="-1" autocomplete="off" />
+                    </div>
+                    <button type="submit" class="button button-white tier-submit">Join Free Waitlist</button>
+                  </form>
+                  <p class="tier-confirm" aria-live="polite" hidden>You're on the Free waitlist. We'll be in touch.</p>
+                  <p class="tier-error" aria-live="polite" hidden></p>
+                </div>
+
+                <!-- PREMIUM TIER WAITLIST -->
+                <div class="tier-card tier-card-pro" id="waitlist-premium">
+                  <div class="tier-card-badge">Most Popular</div>
+                  <div class="tier-card-head">
+                    <span class="tier-card-label tier-card-label-pro">Premium</span>
+                    <span class="tier-card-price">€7.99<span>/month</span></span>
+                  </div>
+                  <p class="tier-card-desc">Unlimited decks, AI card generator, Focus Lock, full analytics, breathing sessions.</p>
+                  <form class="tier-waitlist-form" id="hero-waitlist-form-premium" data-tier="premium" novalidate>
+                    <input type="hidden" name="tier" value="Premium (€7.99/mo)" />
+                    <input type="email" name="email" placeholder="your@email.com" class="waitlist-input tier-input" required aria-label="Email address for Premium waitlist" />
+                    <div class="hp-field" aria-hidden="true">
+                      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+                      <input type="text" name="phone"   tabindex="-1" autocomplete="off" />
+                      <input type="url"  name="website" tabindex="-1" autocomplete="off" />
+                      <input type="text" name="address" tabindex="-1" autocomplete="off" />
+                    </div>
+                    <button type="submit" class="button button-orange tier-submit">Join Premium Waitlist</button>
+                  </form>
+                  <p class="tier-confirm" aria-live="polite" hidden>You're on the Premium waitlist. We'll be in touch.</p>
+                  <p class="tier-error" aria-live="polite" hidden></p>
+                </div>
+
               </div>
             </div>
-            <p class="hero-waitlist-confirm" aria-live="polite" hidden>You're on the list. We'll be in touch soon.</p>
             <p class="hero-waitlist-error" id="hero-waitlist-error" aria-live="polite" hidden></p>
             <div class="hero-line-wrap" style="--d:.65s">
               <p class="waitlist-counter hero-line" id="waitlistCounter" aria-live="polite">
@@ -788,6 +818,67 @@
               <button class="rev-dot" data-slide="4" role="tab" aria-selected="false" aria-label="Review 5"></button>
             </div>
 
+          </div>
+        </section>
+
+        <!-- ── PRICING ── -->
+        <section id="pricing" class="content-section pricing-section">
+          <div class="section-container">
+            <div class="section-label" data-reveal="up">Pricing</div>
+            <h2 class="section-title" data-reveal="up">SIMPLE.<br>TWO PLANS.</h2>
+            <p class="section-intro" data-reveal="up">
+              Start free, forever. Or unlock the full cognitive engine for the price of two coffees a month.
+            </p>
+
+            <div class="pricing-grid" data-reveal="up">
+
+              <!-- FREE -->
+              <article class="pricing-tier">
+                <header class="pt-head">
+                  <span class="pt-name">Free</span>
+                  <div class="pt-price"><strong>€0</strong><span>forever</span></div>
+                </header>
+                <p class="pt-desc">The hook. Enough to feel the product's magic.</p>
+                <ul class="pt-list">
+                  <li><span class="pt-check">✓</span>Lock screen micro-lessons</li>
+                  <li><span class="pt-check">✓</span>3 curated subject decks</li>
+                  <li><span class="pt-check">✓</span>Basic spaced repetition</li>
+                  <li><span class="pt-check">✓</span>Daily streak tracking</li>
+                  <li><span class="pt-check">✓</span>XP &amp; basic gamification</li>
+                  <li class="pt-dim"><span class="pt-check pt-dim-check">–</span>Up to 50 cards total</li>
+                  <li class="pt-dim"><span class="pt-check pt-dim-check">–</span>No AI card generator</li>
+                  <li class="pt-dim"><span class="pt-check pt-dim-check">–</span>No Focus Lock Mode</li>
+                </ul>
+                <a href="#waitlist-free" class="button button-outline-dark pt-cta">Join Free Waitlist</a>
+              </article>
+
+              <!-- PREMIUM -->
+              <article class="pricing-tier pricing-tier-pro">
+                <div class="pt-badge">Most Popular</div>
+                <header class="pt-head">
+                  <span class="pt-name pt-name-pro">Premium</span>
+                  <div class="pt-price"><strong>€7.99</strong><span>/month</span></div>
+                </header>
+                <p class="pt-desc">The full cognitive engine. For students who want every pickup to count.</p>
+                <ul class="pt-list">
+                  <li><span class="pt-check">✓</span>Everything in Free</li>
+                  <li><span class="pt-check">✓</span>Unlimited custom decks</li>
+                  <li><span class="pt-check">✓</span>AI card generator</li>
+                  <li><span class="pt-check">✓</span>Focus Lock Mode</li>
+                  <li><span class="pt-check">✓</span>Advanced spaced repetition</li>
+                  <li><span class="pt-check">✓</span>Breathing sessions before study</li>
+                  <li><span class="pt-check">✓</span>Attention span mapping</li>
+                  <li><span class="pt-check">✓</span>Full retention analytics</li>
+                  <li><span class="pt-check">✓</span>Global leaderboards</li>
+                </ul>
+                <a href="#waitlist-premium" class="button button-solid pt-cta">Join Premium Waitlist</a>
+              </article>
+
+            </div>
+
+            <p class="pricing-note" data-reveal="up">
+              First 500 waitlist members receive lifetime Premium access — free.
+            </p>
           </div>
         </section>
 
