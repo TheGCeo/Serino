@@ -729,9 +729,54 @@ img { display: block; max-width: 100%; }
 }
 
 .tier-card-desc {
-  margin: 0 0 1rem;
+  margin: 0 0 0.75rem;
   font-size: 0.84rem;
   line-height: 1.45;
+  font-weight: 600;
+}
+
+/* 5-point bullet comparison inside the hero card */
+.tier-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+}
+.tier-card-pro .tier-bullets {
+  border-bottom-color: rgba(0,0,0,0.08);
+}
+.tier-bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+.tier-card-free .tier-bullets li { color: rgba(255,255,255,0.9); }
+.tier-card-pro  .tier-bullets li { color: rgba(0,0,0,0.78); }
+
+.tb-check {
+  flex-shrink: 0;
+  display: inline-grid;
+  place-items: center;
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  margin-top: 0.1rem;
+}
+.tier-card-free .tb-check {
+  background: rgba(255,255,255,0.92);
+  color: var(--orange);
+}
+.tier-card-pro .tb-check {
+  background: rgba(232,99,26,0.14);
+  color: var(--orange);
 }
 
 .tier-waitlist-form {
@@ -828,7 +873,9 @@ img { display: block; max-width: 100%; }
   .tier-card-pro { box-shadow: 0 10px 28px rgba(0,0,0,0.18); }
   .tier-card-head { margin-bottom: 0.4rem; }
   .tier-card-price { font-size: 1.45rem; }
-  .tier-card-desc { font-size: 0.82rem; margin-bottom: 0.85rem; }
+  .tier-card-desc { font-size: 0.82rem; margin-bottom: 0.6rem; }
+  .tier-bullets { gap: 0.35rem; margin-bottom: 0.9rem; padding-bottom: 0.85rem; }
+  .tier-bullets li { font-size: 0.8rem; }
 }
 
 .hero-pills {
