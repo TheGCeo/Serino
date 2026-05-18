@@ -73,53 +73,40 @@
               <div class="hero-line-wrap" style="--d:.42s"><span class="hero-line">PROGRESS.</span></div>
             </h1>
             <div class="hero-line-wrap" style="--d:.58s">
-              <div class="tier-waitlist-row hero-line" id="waitlist">
+              <div class="single-tier-row hero-line" id="waitlist">
+                <div class="single-tier-card" id="waitlist-premium">
 
-                <!-- FREE TIER WAITLIST -->
-                <div class="tier-card tier-card-free" id="waitlist-free">
-                  <div class="tier-card-head">
-                    <span class="tier-card-label">Free</span>
-                    <span class="tier-card-price">€0<span>· forever free</span></span>
+                  <div class="stc-head">
+                    <span class="stc-label">Serinou</span>
+                    <div class="stc-price">
+                      <span class="stc-amount">€14.99</span>
+                      <span class="stc-period">/month</span>
+                    </div>
                   </div>
-                  <p class="tier-card-desc">Lock-screen micro-lessons, 3 curated decks, spaced repetition, streaks.</p>
-                  <form class="tier-waitlist-form" id="hero-waitlist-form-free" data-tier="free" novalidate>
-                    <input type="hidden" name="tier" value="Free" />
-                    <input type="email" name="email" placeholder="your@email.com" class="waitlist-input tier-input" required aria-label="Email address for Free waitlist" />
+
+                  <p class="stc-tagline">Full access. Cancel anytime. No hidden tiers.</p>
+
+                  <ul class="stc-bullets">
+                    <li><span class="stc-check">✓</span>Unlimited lock-screen micro-lessons &amp; custom decks</li>
+                    <li><span class="stc-check">✓</span>AI card generator, Focus Lock, breathing sessions</li>
+                    <li><span class="stc-check">✓</span>Full retention analytics &amp; attention mapping</li>
+                  </ul>
+
+                  <form class="tier-waitlist-form stc-form" id="hero-waitlist-form-premium" data-tier="premium" novalidate>
+                    <input type="hidden" name="tier" value="Serinou (€14.99/mo)" />
+                    <input type="email" name="email" placeholder="your@email.com" class="waitlist-input tier-input" required aria-label="Email address for waitlist" />
                     <div class="hp-field" aria-hidden="true">
                       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
                       <input type="text" name="phone"   tabindex="-1" autocomplete="off" />
                       <input type="url"  name="website" tabindex="-1" autocomplete="off" />
                       <input type="text" name="address" tabindex="-1" autocomplete="off" />
                     </div>
-                    <button type="submit" class="button button-white tier-submit">Join Free Waitlist</button>
+                    <button type="submit" class="button button-orange tier-submit">Join the Waitlist</button>
                   </form>
-                  <p class="tier-confirm" aria-live="polite" hidden>You're on the Free waitlist. We'll be in touch.</p>
+                  <p class="tier-confirm" aria-live="polite" hidden>You're on the list. We'll be in touch the moment we launch.</p>
                   <p class="tier-error" aria-live="polite" hidden></p>
-                </div>
 
-                <!-- PREMIUM TIER WAITLIST -->
-                <div class="tier-card tier-card-pro" id="waitlist-premium">
-                  <div class="tier-card-badge">Most Popular</div>
-                  <div class="tier-card-head">
-                    <span class="tier-card-label tier-card-label-pro">Premium</span>
-                    <span class="tier-card-price">€7.99<span>/month</span></span>
-                  </div>
-                  <p class="tier-card-desc">Unlimited decks, AI card generator, Focus Lock, full analytics, breathing sessions.</p>
-                  <form class="tier-waitlist-form" id="hero-waitlist-form-premium" data-tier="premium" novalidate>
-                    <input type="hidden" name="tier" value="Premium (€7.99/mo)" />
-                    <input type="email" name="email" placeholder="your@email.com" class="waitlist-input tier-input" required aria-label="Email address for Premium waitlist" />
-                    <div class="hp-field" aria-hidden="true">
-                      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
-                      <input type="text" name="phone"   tabindex="-1" autocomplete="off" />
-                      <input type="url"  name="website" tabindex="-1" autocomplete="off" />
-                      <input type="text" name="address" tabindex="-1" autocomplete="off" />
-                    </div>
-                    <button type="submit" class="button button-orange tier-submit">Join Premium Waitlist</button>
-                  </form>
-                  <p class="tier-confirm" aria-live="polite" hidden>You're on the Premium waitlist. We'll be in touch.</p>
-                  <p class="tier-error" aria-live="polite" hidden></p>
                 </div>
-
               </div>
             </div>
             <p class="hero-waitlist-error" id="hero-waitlist-error" aria-live="polite" hidden></p>
@@ -131,10 +118,10 @@
             </div>
             <div class="hero-line-wrap" style="--d:.78s">
               <div class="hero-pills hero-line">
-                <span class="pill-free">FREE</span>
                 <span>Spaced Repetition</span>
                 <span>Active Recall</span>
                 <span>Micro-Learning</span>
+                <span>Focus Lock</span>
               </div>
             </div>
           </div>
@@ -234,7 +221,7 @@
 
                 <div class="zp-premium-banner">
                   <svg viewBox="0 0 24 24" fill="white" width="13" height="13"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                  <span>Free Premium</span>
+                  <span>Unlock Full Access</span>
                   <span class="zp-arr">→</span>
                 </div>
 
@@ -825,59 +812,45 @@
         <section id="pricing" class="content-section pricing-section">
           <div class="section-container">
             <div class="section-label" data-reveal="up">Pricing</div>
-            <h2 class="section-title" data-reveal="up">SIMPLE.<br>TWO PLANS.</h2>
+            <h2 class="section-title" data-reveal="up">ONE PLAN.<br>EVERYTHING IN.</h2>
             <p class="section-intro" data-reveal="up">
-              Start free, forever. Or unlock the full cognitive engine for the price of two coffees a month.
+              No tiers, no upsells. The full cognitive engine — for less than two coffees a month.
             </p>
 
-            <div class="pricing-grid" data-reveal="up">
+            <div class="pricing-single" data-reveal="up">
+              <article class="pricing-tier pricing-tier-pro pricing-tier-single">
+                <div class="pt-badge">Launch Pricing</div>
 
-              <!-- FREE -->
-              <article class="pricing-tier">
-                <header class="pt-head">
-                  <span class="pt-name">Free</span>
-                  <div class="pt-price"><strong>€0</strong><span>forever</span></div>
+                <header class="pt-head pt-head-single">
+                  <span class="pt-name pt-name-pro">Serinou</span>
+                  <div class="pt-price pt-price-lg">
+                    <strong>€14.99</strong><span>/month</span>
+                  </div>
                 </header>
-                <p class="pt-desc">The hook. Enough to feel the product's magic.</p>
-                <ul class="pt-list">
+
+                <p class="pt-desc pt-desc-single">
+                  Full access to every feature. Cancel anytime. No commitment, no add-ons.
+                </p>
+
+                <ul class="pt-list pt-list-2col">
                   <li><span class="pt-check">✓</span>Lock screen micro-lessons</li>
-                  <li><span class="pt-check">✓</span>3 curated subject decks</li>
-                  <li><span class="pt-check">✓</span>Basic spaced repetition</li>
-                  <li><span class="pt-check">✓</span>Daily streak tracking</li>
-                  <li><span class="pt-check">✓</span>XP &amp; basic gamification</li>
-                  <li class="pt-dim"><span class="pt-check pt-dim-check">–</span>Up to 50 cards total</li>
-                  <li class="pt-dim"><span class="pt-check pt-dim-check">–</span>No AI card generator</li>
-                  <li class="pt-dim"><span class="pt-check pt-dim-check">–</span>No Focus Lock Mode</li>
-                </ul>
-                <a href="#waitlist-free" class="button button-outline-dark pt-cta">Join Free Waitlist</a>
-              </article>
-
-              <!-- PREMIUM -->
-              <article class="pricing-tier pricing-tier-pro">
-                <div class="pt-badge">Most Popular</div>
-                <header class="pt-head">
-                  <span class="pt-name pt-name-pro">Premium</span>
-                  <div class="pt-price"><strong>€7.99</strong><span>/month</span></div>
-                </header>
-                <p class="pt-desc">The full cognitive engine. For students who want every pickup to count.</p>
-                <ul class="pt-list">
-                  <li><span class="pt-check">✓</span>Everything in Free</li>
                   <li><span class="pt-check">✓</span>Unlimited custom decks</li>
                   <li><span class="pt-check">✓</span>AI card generator</li>
                   <li><span class="pt-check">✓</span>Focus Lock Mode</li>
                   <li><span class="pt-check">✓</span>Advanced spaced repetition</li>
-                  <li><span class="pt-check">✓</span>Breathing sessions before study</li>
+                  <li><span class="pt-check">✓</span>Breathing sessions</li>
                   <li><span class="pt-check">✓</span>Attention span mapping</li>
                   <li><span class="pt-check">✓</span>Full retention analytics</li>
                   <li><span class="pt-check">✓</span>Global leaderboards</li>
+                  <li><span class="pt-check">✓</span>All curated subject decks</li>
                 </ul>
-                <a href="#waitlist-premium" class="button button-solid pt-cta">Join Premium Waitlist</a>
-              </article>
 
+                <a href="#waitlist-premium" class="button button-solid pt-cta pt-cta-lg">Join the Waitlist</a>
+              </article>
             </div>
 
             <p class="pricing-note" data-reveal="up">
-              First 500 waitlist members receive lifetime Premium access — free.
+              First 500 waitlist members lock in early-bird pricing for life.
             </p>
           </div>
         </section>
@@ -931,11 +904,11 @@
 
               <div class="faq-item" data-reveal="up">
                 <button class="faq-q" aria-expanded="false">
-                  Is it free?
+                  How much does Serinou cost?
                   <span class="faq-chevron" aria-hidden="true"></span>
                 </button>
                 <div class="faq-a">
-                  <p>Serinou has a free tier with core features. Pro unlocks unlimited decks, advanced analytics, and Focus Lock Mode. The first 500 waitlist members get lifetime Pro access — completely free.</p>
+                  <p>Serinou is €14.99 per month for full access — no tiers, no add-ons, cancel anytime. The first 500 waitlist members lock in this early-bird price for life, even after we raise it at launch.</p>
                 </div>
               </div>
 
