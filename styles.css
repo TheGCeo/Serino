@@ -2888,58 +2888,294 @@ img { display: block; max-width: 100%; }
   .pricing-grid { grid-template-columns: 1fr; gap: 1.75rem; }
 }
 
-/* Single-tier pricing layout */
-.pricing-single {
-  max-width: 560px;
+/* ── COMPARISON TABLE ── */
+.compare-card {
+  max-width: 900px;
   margin: 2.5rem auto 0;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 24px;
+  box-shadow: 0 14px 44px rgba(0,0,0,0.08);
+  overflow: hidden;
 }
 
-.pricing-tier-single {
-  padding: 2.5rem 2.25rem 2.25rem;
+.compare-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr);
 }
 
-.pt-head-single {
-  flex-direction: column;
+/* base cell */
+.compare-cell {
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  display: flex;
   align-items: center;
-  gap: 0.65rem;
-  text-align: center;
-  margin-bottom: 0.75rem;
-}
-
-.pt-price-lg strong {
-  font-size: 3rem;
-}
-.pt-price-lg span {
+  justify-content: center;
   font-size: 0.95rem;
+  color: rgba(0,0,0,0.78);
+  background: #fff;
+  min-height: 56px;
 }
 
-.pt-desc-single {
+.compare-cell-feat {
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+  font-weight: 600;
+  color: rgba(0,0,0,0.82);
+}
+
+.cmp-feat-sub {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(0,0,0,0.5);
+  margin-top: 0.18rem;
+  line-height: 1.35;
+}
+
+/* header row */
+.compare-head {
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.4rem 1rem 1.5rem;
+  background: #faf6f1;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
   text-align: center;
-  font-size: 1rem;
 }
 
-.pt-list-2col {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.65rem 1.25rem !important;
-  margin-bottom: 1.75rem !important;
+.compare-head-platinum {
+  background: linear-gradient(180deg, #fff4ec 0%, #ffe8d4 100%);
+  position: relative;
+}
+.compare-head-platinum::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 -1px 0;
+  border-bottom: 2px solid var(--orange);
+  pointer-events: none;
 }
 
-.pt-cta-lg {
-  min-height: 3.25rem;
-  font-size: 1rem;
-  padding: 1rem 1.4rem;
+.compare-head-empty {
+  background: #faf6f1;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 
-@media (max-width: 600px) {
-  .pricing-tier-single { padding: 2.2rem 1.4rem 1.75rem; }
-  .pt-price-lg strong { font-size: 2.4rem; }
-  .pt-list-2col {
-    grid-template-columns: 1fr;
-    gap: 0.55rem !important;
+.ch-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.ch-badge-premium {
+  background: rgba(0,0,0,0.06);
+  color: rgba(0,0,0,0.7);
+}
+.ch-badge-platinum {
+  background: var(--orange);
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(232,99,26,0.32);
+}
+
+.ch-price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.2rem;
+}
+.ch-price strong {
+  font-family: "League Spartan", sans-serif;
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--ink, #1a1a1a);
+  line-height: 1;
+}
+.ch-price span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(0,0,0,0.5);
+}
+
+.ch-desc {
+  margin: 0.15rem 0 0;
+  font-size: 0.78rem;
+  color: rgba(0,0,0,0.55);
+  line-height: 1.4;
+}
+
+/* section dividers */
+.compare-section {
+  grid-column: 1 / -1;
+  padding: 0.7rem 1.2rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.5);
+  background: #fafafa;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+/* yes / no indicators */
+.cmp-yes,
+.cmp-no {
+  display: inline-grid;
+  place-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+.cmp-yes {
+  background: rgba(232,99,26,0.12);
+  color: var(--orange);
+}
+.cmp-no {
+  background: rgba(0,0,0,0.04);
+  color: rgba(0,0,0,0.32);
+  font-weight: 600;
+}
+
+/* highlight the Platinum column */
+.compare-grid > .compare-cell:nth-child(3n) { /* Platinum column cells */
+  background: rgba(232,99,26,0.025);
+}
+
+/* CTA row */
+.compare-cta-cell {
+  padding: 1.5rem 1rem;
+  border-bottom: 0;
+  background: #faf6f1 !important;
+}
+.compare-cta-empty {
+  border-bottom: 0;
+  background: #faf6f1;
+}
+.compare-cta-cell .pt-cta {
+  width: 100%;
+  min-height: 2.85rem;
+  font-size: 0.88rem;
+}
+
+/* remove the bottom border from the last data row above the CTA row */
+.compare-grid > .compare-cell:nth-last-child(-n+3) {
+  border-bottom: 0;
+}
+
+/* ── MOBILE: hide desktop comparison table, show stacked cards instead ── */
+.compare-mobile { display: none; }
+
+@media (max-width: 720px) {
+  .compare-card { display: none; }
+  .compare-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 480px;
+    margin: 2.5rem auto 0;
   }
-  .pt-desc-single { font-size: 0.92rem; }
 }
+
+.cm-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 20px;
+  padding: 1.5rem 1.35rem 1.4rem;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+}
+.cm-card-platinum {
+  border-color: rgba(232,99,26,0.45);
+  box-shadow: 0 14px 36px rgba(232,99,26,0.18);
+}
+
+.cm-badge {
+  display: inline-block;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 0.65rem;
+}
+.cm-badge-premium { background: rgba(0,0,0,0.06); color: rgba(0,0,0,0.7); }
+.cm-badge-platinum { background: var(--orange); color: #fff; }
+
+.cm-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.cm-name {
+  font-family: "League Spartan", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--ink, #1a1a1a);
+}
+.cm-name-platinum { color: var(--orange); }
+.cm-price {
+  font-family: "League Spartan", sans-serif;
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--ink, #1a1a1a);
+  line-height: 1;
+}
+.cm-price span {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(0,0,0,0.5);
+  margin-left: 0.15rem;
+}
+.cm-tagline {
+  margin: 0 0 1rem;
+  font-size: 0.84rem;
+  color: rgba(0,0,0,0.6);
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.cm-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.cm-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.86rem;
+  line-height: 1.4;
+  color: rgba(0,0,0,0.76);
+}
+.cm-list li.cm-li-extra { color: rgba(0,0,0,0.85); font-weight: 600; }
+.cm-list .cmp-yes,
+.cm-list .cmp-no {
+  width: 1.25rem;
+  height: 1.25rem;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+.cm-section-label {
+  display: block;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.45);
+  margin: 0.5rem 0 0.5rem;
+}
+.cm-cta { width: 100%; text-align: center; min-height: 2.9rem; }
 
 /* ── BLUR-IN INTRO (header brand + nav, first load) ── */
 .blur-in {

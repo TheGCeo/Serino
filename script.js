@@ -490,7 +490,7 @@ document.addEventListener("click", (e) => {
     window.addEventListener(ev, setInteracted, { once: true, passive: true })
   );
 
-  ["hero-waitlist-form-premium"].forEach((id) => {
+  ["hero-waitlist-form-premium", "hero-waitlist-form-platinum"].forEach((id) => {
     const form = document.getElementById(id);
     if (!form) return;
     const confirm = form.parentElement.querySelector(".tier-confirm");
@@ -636,7 +636,8 @@ document.addEventListener("click", (e) => {
           }
           // keep the form visible, just lock it down and flip the button
           if (btn) {
-            btn.textContent = "You're on the list ✓";
+            const tier = form.dataset.tier === "platinum" ? "Platinum" : "Premium";
+            btn.textContent = `You're on the ${tier} list ✓`;
             btn.disabled = true;
             btn.classList.add("is-submitted");
           }

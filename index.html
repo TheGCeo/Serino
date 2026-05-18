@@ -73,40 +73,53 @@
               <div class="hero-line-wrap" style="--d:.42s"><span class="hero-line">PROGRESS.</span></div>
             </h1>
             <div class="hero-line-wrap" style="--d:.58s">
-              <div class="single-tier-row hero-line" id="waitlist">
-                <div class="single-tier-card" id="waitlist-premium">
+              <div class="tier-waitlist-row hero-line" id="waitlist">
 
-                  <div class="stc-head">
-                    <span class="stc-label">Serinou</span>
-                    <div class="stc-price">
-                      <span class="stc-amount">€14.99</span>
-                      <span class="stc-period">/month</span>
-                    </div>
+                <!-- PREMIUM TIER -->
+                <div class="tier-card tier-card-free" id="waitlist-premium">
+                  <div class="tier-card-head">
+                    <span class="tier-card-label">Premium</span>
+                    <span class="tier-card-price">€4.99<span>/month</span></span>
                   </div>
-
-                  <p class="stc-tagline">Full access. Cancel anytime. No hidden tiers.</p>
-
-                  <ul class="stc-bullets">
-                    <li><span class="stc-check">✓</span>Unlimited lock-screen micro-lessons &amp; custom decks</li>
-                    <li><span class="stc-check">✓</span>AI card generator, Focus Lock, breathing sessions</li>
-                    <li><span class="stc-check">✓</span>Full retention analytics &amp; attention mapping</li>
-                  </ul>
-
-                  <form class="tier-waitlist-form stc-form" id="hero-waitlist-form-premium" data-tier="premium" novalidate>
-                    <input type="hidden" name="tier" value="Serinou (€14.99/mo)" />
-                    <input type="email" name="email" placeholder="your@email.com" class="waitlist-input tier-input" required aria-label="Email address for waitlist" />
+                  <p class="tier-card-desc">All the basics: lock-screen lessons, spaced repetition, streaks &amp; daily plan.</p>
+                  <form class="tier-waitlist-form" id="hero-waitlist-form-premium" data-tier="premium" novalidate>
+                    <input type="hidden" name="tier" value="Premium (€4.99/mo)" />
+                    <input type="email" name="email" placeholder="your@email.com" class="waitlist-input tier-input" required aria-label="Email address for Premium waitlist" />
                     <div class="hp-field" aria-hidden="true">
                       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
                       <input type="text" name="phone"   tabindex="-1" autocomplete="off" />
                       <input type="url"  name="website" tabindex="-1" autocomplete="off" />
                       <input type="text" name="address" tabindex="-1" autocomplete="off" />
                     </div>
-                    <button type="submit" class="button button-orange tier-submit">Join the Waitlist</button>
+                    <button type="submit" class="button button-white tier-submit">Join Premium Waitlist</button>
                   </form>
-                  <p class="tier-confirm" aria-live="polite" hidden>You're on the list. We'll be in touch the moment we launch.</p>
+                  <p class="tier-confirm" aria-live="polite" hidden>You're on the Premium waitlist. We'll be in touch.</p>
                   <p class="tier-error" aria-live="polite" hidden></p>
-
                 </div>
+
+                <!-- PLATINUM TIER -->
+                <div class="tier-card tier-card-pro" id="waitlist-platinum">
+                  <div class="tier-card-badge">Best Value</div>
+                  <div class="tier-card-head">
+                    <span class="tier-card-label tier-card-label-pro">Platinum</span>
+                    <span class="tier-card-price">€7.99<span>/month</span></span>
+                  </div>
+                  <p class="tier-card-desc">Everything in Premium + serious insights, offline mode, group learning, unlimited sessions.</p>
+                  <form class="tier-waitlist-form" id="hero-waitlist-form-platinum" data-tier="platinum" novalidate>
+                    <input type="hidden" name="tier" value="Platinum (€7.99/mo)" />
+                    <input type="email" name="email" placeholder="your@email.com" class="waitlist-input tier-input" required aria-label="Email address for Platinum waitlist" />
+                    <div class="hp-field" aria-hidden="true">
+                      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+                      <input type="text" name="phone"   tabindex="-1" autocomplete="off" />
+                      <input type="url"  name="website" tabindex="-1" autocomplete="off" />
+                      <input type="text" name="address" tabindex="-1" autocomplete="off" />
+                    </div>
+                    <button type="submit" class="button button-orange tier-submit">Join Platinum Waitlist</button>
+                  </form>
+                  <p class="tier-confirm" aria-live="polite" hidden>You're on the Platinum waitlist. We'll be in touch.</p>
+                  <p class="tier-error" aria-live="polite" hidden></p>
+                </div>
+
               </div>
             </div>
             <p class="hero-waitlist-error" id="hero-waitlist-error" aria-live="polite" hidden></p>
@@ -812,41 +825,165 @@
         <section id="pricing" class="content-section pricing-section">
           <div class="section-container">
             <div class="section-label" data-reveal="up">Pricing</div>
-            <h2 class="section-title" data-reveal="up">ONE PLAN.<br>EVERYTHING IN.</h2>
+            <h2 class="section-title" data-reveal="up">TWO PLANS.<br>ONE GOAL.</h2>
             <p class="section-intro" data-reveal="up">
-              No tiers, no upsells. The full cognitive engine — for less than two coffees a month.
+              Start with the essentials, or unlock the full cognitive engine.
+              Compare side by side — pick what fits.
             </p>
 
-            <div class="pricing-single" data-reveal="up">
-              <article class="pricing-tier pricing-tier-pro pricing-tier-single">
-                <div class="pt-badge">Launch Pricing</div>
+            <!-- COMPARISON TABLE -->
+            <div class="compare-card" data-reveal="up">
+              <div class="compare-grid">
 
-                <header class="pt-head pt-head-single">
-                  <span class="pt-name pt-name-pro">Serinou</span>
-                  <div class="pt-price pt-price-lg">
-                    <strong>€14.99</strong><span>/month</span>
-                  </div>
-                </header>
+                <!-- HEADER ROW -->
+                <div class="compare-cell compare-cell-feat compare-head-empty" aria-hidden="true"></div>
 
-                <p class="pt-desc pt-desc-single">
-                  Full access to every feature. Cancel anytime. No commitment, no add-ons.
-                </p>
+                <div class="compare-cell compare-head compare-head-premium">
+                  <span class="ch-badge ch-badge-premium">Premium</span>
+                  <div class="ch-price"><strong>€4.99</strong><span>/month</span></div>
+                  <p class="ch-desc">All the basics, every day.</p>
+                </div>
 
-                <ul class="pt-list pt-list-2col">
-                  <li><span class="pt-check">✓</span>Lock screen micro-lessons</li>
-                  <li><span class="pt-check">✓</span>Unlimited custom decks</li>
-                  <li><span class="pt-check">✓</span>AI card generator</li>
-                  <li><span class="pt-check">✓</span>Focus Lock Mode</li>
-                  <li><span class="pt-check">✓</span>Advanced spaced repetition</li>
-                  <li><span class="pt-check">✓</span>Breathing sessions</li>
-                  <li><span class="pt-check">✓</span>Attention span mapping</li>
-                  <li><span class="pt-check">✓</span>Full retention analytics</li>
-                  <li><span class="pt-check">✓</span>Global leaderboards</li>
-                  <li><span class="pt-check">✓</span>All curated subject decks</li>
+                <div class="compare-cell compare-head compare-head-platinum">
+                  <span class="ch-badge ch-badge-platinum">★ Platinum</span>
+                  <div class="ch-price"><strong>€7.99</strong><span>/month</span></div>
+                  <p class="ch-desc">Serious learners. Full insights.</p>
+                </div>
+
+                <!-- SECTION: CORE -->
+                <div class="compare-section">Core learning</div>
+
+                <div class="compare-cell compare-cell-feat">Lock-screen micro-lessons</div>
+                <div class="compare-cell"><span class="cmp-yes">✓</span></div>
+                <div class="compare-cell"><span class="cmp-yes">✓</span></div>
+
+                <div class="compare-cell compare-cell-feat">Spaced repetition algorithm</div>
+                <div class="compare-cell"><span class="cmp-yes">✓</span></div>
+                <div class="compare-cell"><span class="cmp-yes">✓</span></div>
+
+                <div class="compare-cell compare-cell-feat">Daily streaks &amp; XP</div>
+                <div class="compare-cell"><span class="cmp-yes">✓</span></div>
+                <div class="compare-cell"><span class="cmp-yes">✓</span></div>
+
+                <div class="compare-cell compare-cell-feat">Curated subject decks</div>
+                <div class="compare-cell"><span class="cmp-yes">✓</span></div>
+                <div class="compare-cell"><span class="cmp-yes">✓</span></div>
+
+                <div class="compare-cell compare-cell-feat">Custom flashcard decks</div>
+                <div class="compare-cell"><span class="cmp-yes">✓</span></div>
+                <div class="compare-cell"><span class="cmp-yes">✓</span></div>
+
+                <!-- SECTION: ADVANCED -->
+                <div class="compare-section">Power features</div>
+
+                <div class="compare-cell compare-cell-feat">
+                  Serious insights
+                  <span class="cmp-feat-sub">Attention mapping, retention graphs, weak-spot detection</span>
+                </div>
+                <div class="compare-cell"><span class="cmp-no">—</span></div>
+                <div class="compare-cell"><span class="cmp-yes">✓</span></div>
+
+                <div class="compare-cell compare-cell-feat">
+                  Offline mode
+                  <span class="cmp-feat-sub">Study anywhere — no signal needed</span>
+                </div>
+                <div class="compare-cell"><span class="cmp-no">—</span></div>
+                <div class="compare-cell"><span class="cmp-yes">✓</span></div>
+
+                <div class="compare-cell compare-cell-feat">
+                  Unlimited study sessions
+                  <span class="cmp-feat-sub">No daily caps, no review limits</span>
+                </div>
+                <div class="compare-cell"><span class="cmp-no">—</span></div>
+                <div class="compare-cell"><span class="cmp-yes">✓</span></div>
+
+                <div class="compare-cell compare-cell-feat">
+                  Group learning
+                  <span class="cmp-feat-sub">Shared decks &amp; private leaderboards</span>
+                </div>
+                <div class="compare-cell"><span class="cmp-no">—</span></div>
+                <div class="compare-cell"><span class="cmp-yes">✓</span></div>
+
+                <div class="compare-cell compare-cell-feat">
+                  Unlimited planning
+                  <span class="cmp-feat-sub">Full exam-prep scheduler, no week limit</span>
+                </div>
+                <div class="compare-cell"><span class="cmp-no">—</span></div>
+                <div class="compare-cell"><span class="cmp-yes">✓</span></div>
+
+                <!-- CTA ROW -->
+                <div class="compare-cell compare-cell-feat compare-cta-empty" aria-hidden="true"></div>
+                <div class="compare-cell compare-cta-cell">
+                  <a href="#waitlist-premium" class="button button-outline-dark pt-cta">Join Premium Waitlist</a>
+                </div>
+                <div class="compare-cell compare-cta-cell">
+                  <a href="#waitlist-platinum" class="button button-solid pt-cta">Join Platinum Waitlist</a>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- MOBILE STACKED CARDS (hidden on desktop, shown <=720px) -->
+            <div class="compare-mobile" data-reveal="up">
+
+              <article class="cm-card">
+                <span class="cm-badge cm-badge-premium">Premium</span>
+                <div class="cm-head">
+                  <span class="cm-name">Premium</span>
+                  <span class="cm-price">€4.99<span>/mo</span></span>
+                </div>
+                <p class="cm-tagline">All the basics, every day.</p>
+
+                <span class="cm-section-label">Core learning</span>
+                <ul class="cm-list">
+                  <li><span class="cmp-yes">✓</span>Lock-screen micro-lessons</li>
+                  <li><span class="cmp-yes">✓</span>Spaced repetition algorithm</li>
+                  <li><span class="cmp-yes">✓</span>Daily streaks &amp; XP</li>
+                  <li><span class="cmp-yes">✓</span>Curated subject decks</li>
+                  <li><span class="cmp-yes">✓</span>Custom flashcard decks</li>
                 </ul>
 
-                <a href="#waitlist-premium" class="button button-solid pt-cta pt-cta-lg">Join the Waitlist</a>
+                <span class="cm-section-label">Power features</span>
+                <ul class="cm-list">
+                  <li><span class="cmp-no">—</span>Serious insights</li>
+                  <li><span class="cmp-no">—</span>Offline mode</li>
+                  <li><span class="cmp-no">—</span>Unlimited sessions</li>
+                  <li><span class="cmp-no">—</span>Group learning</li>
+                  <li><span class="cmp-no">—</span>Unlimited planning</li>
+                </ul>
+
+                <a href="#waitlist-premium" class="button button-outline-dark cm-cta">Join Premium Waitlist</a>
               </article>
+
+              <article class="cm-card cm-card-platinum">
+                <span class="cm-badge cm-badge-platinum">★ Platinum · Best Value</span>
+                <div class="cm-head">
+                  <span class="cm-name cm-name-platinum">Platinum</span>
+                  <span class="cm-price">€7.99<span>/mo</span></span>
+                </div>
+                <p class="cm-tagline">Everything in Premium + serious learner tools.</p>
+
+                <span class="cm-section-label">Core learning</span>
+                <ul class="cm-list">
+                  <li><span class="cmp-yes">✓</span>Lock-screen micro-lessons</li>
+                  <li><span class="cmp-yes">✓</span>Spaced repetition algorithm</li>
+                  <li><span class="cmp-yes">✓</span>Daily streaks &amp; XP</li>
+                  <li><span class="cmp-yes">✓</span>Curated subject decks</li>
+                  <li><span class="cmp-yes">✓</span>Custom flashcard decks</li>
+                </ul>
+
+                <span class="cm-section-label">Power features</span>
+                <ul class="cm-list">
+                  <li class="cm-li-extra"><span class="cmp-yes">✓</span>Serious insights — attention &amp; retention</li>
+                  <li class="cm-li-extra"><span class="cmp-yes">✓</span>Offline mode</li>
+                  <li class="cm-li-extra"><span class="cmp-yes">✓</span>Unlimited study sessions</li>
+                  <li class="cm-li-extra"><span class="cmp-yes">✓</span>Group learning &amp; shared decks</li>
+                  <li class="cm-li-extra"><span class="cmp-yes">✓</span>Unlimited planning</li>
+                </ul>
+
+                <a href="#waitlist-platinum" class="button button-solid cm-cta">Join Platinum Waitlist</a>
+              </article>
+
             </div>
 
             <p class="pricing-note" data-reveal="up">
@@ -908,7 +1045,7 @@
                   <span class="faq-chevron" aria-hidden="true"></span>
                 </button>
                 <div class="faq-a">
-                  <p>Serinou is €14.99 per month for full access — no tiers, no add-ons, cancel anytime. The first 500 waitlist members lock in this early-bird price for life, even after we raise it at launch.</p>
+                  <p>Two plans, both monthly. <strong>Premium</strong> is €4.99/mo and covers the daily essentials — lock-screen lessons, spaced repetition, streaks, curated &amp; custom decks. <strong>Platinum</strong> is €7.99/mo and adds serious insights, offline mode, unlimited sessions, group learning, and unlimited planning. The first 500 waitlist members lock in early-bird pricing for life.</p>
                 </div>
               </div>
 
